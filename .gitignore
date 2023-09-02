@@ -1,2 +1,6 @@
 /node_modules
 /.vs
+/back/package.json
+/Instalacion de Angular y dependencias Front.txt
+/back/package-lock.json
+/.gitignore
