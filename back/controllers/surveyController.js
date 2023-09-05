@@ -12,10 +12,13 @@ async function createSurvey(req, res) {
       surveyorId,
     });
     // Enviar correo de confirmación
+	
     let formattedQuestions = '';
     const fromName = 'Municipalidad Mina Clavero';
     const subject = 'Confirmación de encuesta realizada';
     const bodyText = 'Gracias por su participación';
+    const surveyEmailDate = new Date();
+
     // eslint-disable-next-line no-restricted-syntax
     // for (const [index, question] of Object.entries(questions)) {
     // formattedQuestions += `<p><strong>Pregunta ${index}:</strong> ${question}</p>`;
@@ -175,7 +178,7 @@ async function createSurvey(req, res) {
 																									<td class="text white center" style="padding-bottom: 2px; font-family:Arial, sans-serif; font-size:16px; line-height:30px; min-width:auto !important; color:#ffffff; text-align:center;">Hemos recibido tu Encuesta de Información Turística</td>
 																								</tr>
 																								<tr>
-																									<td class="text white center" style="padding-bottom: 25px; font-family:Arial, sans-serif; font-size:16px; line-height:30px; min-width:auto !important; color:#ffffff; text-align:center;">Realizada el día: 6 de Enero de 2023</td>
+																									<td class="text white center" style="padding-bottom: 25px; font-family:Arial, sans-serif; font-size:16px; line-height:30px; min-width:auto !important; color:#ffffff; text-align:center;">Realizada el día: ${surveyEmailDate} </td>
 																								</tr><tr>
 																									<td align="center">
 																										<table border="0" cellspacing="0" cellpadding="0">
@@ -239,17 +242,12 @@ async function createSurvey(req, res) {
 											</tr>
 										</tbody></table>
 										<!-- END Purple Content / Title + Copy + Button -->
-
 										<!-- Content / Title + Copy + Gallery + Button -->
-										
 										<!-- END Content / Title + Copy + Gallery + Button -->
-										
 										<!-- Footer -->
 										<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#ffffff">
 											<tbody><tr>
 												<td style="padding: 80px;" class="p30-15">
-													
-
 													<table width="100%" border="0" cellspacing="0" cellpadding="0">
 														<tbody><tr>
 															<th class="column" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;">
@@ -287,8 +285,6 @@ async function createSurvey(req, res) {
 			</td>
 		</tr>
 	</tbody></table>
-
-
 </body></html>`;
 
     await emailService.sendConfirmationEmail(
