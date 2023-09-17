@@ -10,13 +10,15 @@ import { CompartidaModule } from './component/compartida/compartida.module';
 import { LoginComponent } from './component/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+//import { SurveyListComponent } from './component/dashboard/survey-list/survey-list.component';
 //import { InicioComponent } from './component/dasboard/inicio/inicio.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    //SurveyListComponent
     //InicioComponent
   ],
   imports: [
@@ -25,6 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     CompartidaModule,
     HttpClientModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

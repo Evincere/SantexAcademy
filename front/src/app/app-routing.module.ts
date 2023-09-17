@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './component/login/login.component';
 import { CrearUsuarioComponent } from './component/dashboard/usuarios/crear-usuario/crear-usuario.component';
 import { UsuariosComponent } from './component/dashboard/usuarios/usuarios.component';
+// import { SurveyListComponent } from './component/dashboard/survey-list/survey-list.component';   //jz
 import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [

@@ -1,14 +1,18 @@
 [
-    {
-        "nombre": "Dashboard",
-        "redirect":"/dashboard"
-    },
-    {
-        "nombre": "Usuarios",
-        "redirect":"/dashboard/usuarios"
-    },
-    {
-        "nombre": "Encuesta",
-        "redirect":"/dashboard/encuesta"
-    }
+  {
+    "nombre": "Dashboard",
+    "redirect": "/dashboard"
+  },
+  {
+    "nombre": "Usuarios",
+    "redirect": "/dashboard/usuarios"
+  },
+  {
+    "nombre": "Encuesta",
+    "redirect": "/dashboard/encuesta"
+  },
+  {
+    "nombre": "Listado de Encuestas",
+    "redirect": "/dashboard/survey-list"
+  }
 ]
