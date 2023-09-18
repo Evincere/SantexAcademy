@@ -74,8 +74,9 @@ export class SurveyListComponent implements OnInit, AfterViewInit {
    error TS2564: Property 'sort' has no initializer and is not definitely assigned in the constructor.
   */
 
-  constructor(publicdialog:MatDialog,){
-    this.dataSource = newMatTableDataSource(listEncuestas);//Aquilepasolosdatosdelarray
+  constructor(public dialog: MatDialog) {
+
+    this.dataSource = new MatTableDataSource(listEncuestas);//Aquilepasolosdatosdelarray
   }
 
   ngOnInit(): void {
