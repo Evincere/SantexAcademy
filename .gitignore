@@ -1,0 +1,10 @@
+﻿################################################################################
+# Este archivo .gitignore ha sido creado automáticamente por Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/front/.angular/cache/14.2.12
+/front/node_modules
+/Instalacion de Angular y dependencias Front.txt
+/.gitignore
+/front/package-lock.json
