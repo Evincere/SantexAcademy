@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CompartidaModule } from 'src/app/component/compartida/compartida.module';
+import { CompartidaModule } from '../../../compartida/compartida.module';
 
 
 @NgModule({

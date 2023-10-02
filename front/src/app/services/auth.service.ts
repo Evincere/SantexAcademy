@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { UserLogin } from '../interfaces/user';
 import { firstValueFrom, lastValueFrom, BehaviorSubject, Observable } from 'rxjs';
-
+import jwt_decode from 'jwt-decode';
 @Injectable({
   providedIn: 'root'
 })
@@ -29,5 +29,28 @@ export class AuthService {
 
   isAuthenticated(): Observable<boolean> {
     return this.isAuthenticatedSubject.asObservable();
+  }
+
+  hasRole(rol:string | string[]): boolean {
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      return false;
+    }
+
+    try {
+      const decodedToken: any = jwt_decode(token);
+      const userRoles = decodedToken.rol.toLowerCase();
+  
+      return Array.isArray(rol) ? rol.includes(userRoles) : userRoles === rol;
+    } catch (error) {
+      console.error('Error decoding token or checking roles:', error);
+      return false;
+    }
+  }
+
+  logout(): void {
+    localStorage.removeItem('token');
+    this.isAuthenticatedSubject.next(false);
   }
 }

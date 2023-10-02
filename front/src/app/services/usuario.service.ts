@@ -8,6 +8,17 @@ import jwt_decode from 'jwt-decode';
   providedIn: 'root'
 })
 export class UserService {
+
+  async getUserById(id: number):Promise<User>   {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+  
+  // Usa template literals para construir la URL correctamente
+  const usersObservable = this.http.get<User>("http://localhost:3000/user/" + id,  { headers });
+
+  return await firstValueFrom(usersObservable);
+  }
   private appUrl = environment.APP_URL;
 
   constructor(private http: HttpClient) { }
@@ -17,7 +28,7 @@ export class UserService {
       'Authorization': `Bearer ${user.token}`
     });
     try {
-      const usersObservable = this.http.post(`${this.appUrl}user/`, user, {headers});
+      const usersObservable = this.http.post(`${this.appUrl}user/`, user, { headers });
       return await firstValueFrom(usersObservable);
     } catch (error) {
       console.error(error);
@@ -57,7 +68,7 @@ export class UserService {
     if (token) {
       // Decodificar el token JWT
       const decodedToken: any = jwt_decode(token);
-    
+
       // Obtener el ID del usuario del payload decodificado
       const userId = decodedToken.userId;
       return userId;
@@ -66,6 +77,23 @@ export class UserService {
       return null;
     }
 
+  }
+
+  async updateUser(user: User): Promise<User> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${user.token}`
+    });
+    const id = user.id;
+    try {
+      const updatedUser = await this.http.put<User>(`${this.appUrl}user/${id}`, user, { headers });
+      console.log(updatedUser);
+      return firstValueFrom(updatedUser);
+      console.log(updatedUser);
+    } catch (error) {
+      console.error('ERROR', error);
+      throw error;
+    }
   }
 
 }

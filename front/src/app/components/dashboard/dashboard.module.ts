@@ -11,6 +11,8 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
 import { EncuestaComponent } from './encuesta/encuesta.component';
 import { CrearUsuarioComponent } from './usuarios/crear-usuario/crear-usuario.component';
 import { ExpansionComponent } from './encuesta/expansion/expansion.component';
+import { VerUsuarioComponent } from './usuarios/ver-usuario/ver-usuario.component';
+import { LogoutConfirmationComponent } from './navbar/logout-confirmation/logout-confirmation.component';
 
 import { SurveyListComponent } from './survey-list/survey-list.component'; //jz
 import { VerEncuestaComponent } from './encuesta/ver-encuesta/ver-encuesta.component'; //jz
@@ -28,17 +30,12 @@ import { VerEncuestaComponent } from './encuesta/ver-encuesta/ver-encuesta.compo
     UsuariosComponent,
     EncuestaComponent,
     CrearUsuarioComponent,
-    ExpansionComponent,
-    SurveyListComponent, //jz
-    VerEncuestaComponent, //jz
-
+    ExpansionComponent
   ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    CompartidaModule,
-    MatDialogModule,
-
+    CompartidaModule
   ]
 })
 

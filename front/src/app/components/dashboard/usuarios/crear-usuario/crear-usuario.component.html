@@ -1,0 +1,79 @@
+
+<div class="container">
+    <mat-toolbar>
+      <span >{{operacion}} Usuario</span>
+    </mat-toolbar>
+
+    <div class="card-container">
+        <mat-card class="card">
+            <form [formGroup]="form" (ngSubmit)="createEditUser(id)">
+    
+                <!--nombre-->
+                <mat-form-field class="campo">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput autocomplete="off" formControlName="firstName">
+                </mat-form-field>
+            
+                <!--apellido-->
+                <mat-form-field class="campo">
+                    <mat-label>Apellido</mat-label>
+                    <input matInput autocomplete="off" formControlName="lastName">
+                </mat-form-field>
+    
+                <!--nombre de usuario-->
+                <mat-form-field class="campo">
+                     <mat-label>Nombre de Usuario</mat-label>
+                     <input matInput autocomplete="off" formControlName="username">
+                </mat-form-field>
+                
+                <!--contraseña--> 
+                <mat-form-field class="campo">
+                    <mat-label>Contraseña</mat-label>
+                    <input matInput autocomplete="off" formControlName="password">
+                </mat-form-field>
+                
+                <!--email-->
+                <mat-form-field class="campo">
+                    <mat-label>Email</mat-label>
+                    <input matInput autocomplete="off" formControlName="email">
+                </mat-form-field>
+            
+                <!--rol-->    
+                <mat-form-field class="campo">
+                    <mat-label>Rol</mat-label>
+                    <mat-select formControlName="rol">
+                         <mat-option *ngFor="let item of rol" [value]="item">
+                            {{item}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            
+    
+                <!--telefono-->
+                <mat-form-field class="campo">
+                    <mat-label>Teléfono</mat-label>
+                    <input matInput autocomplete="off" formControlName="phone">
+                </mat-form-field>
+              
+                 <!--botones-->
+                 <div class="botonContainer">
+                    <!-- <mat-card-actions> -->
+                        <!--botón volver-->
+                        <button class="botonVolver" routerLink="/dashboard/usuarios" mat-raised-button color="primary"  >Volver</button>
+                        <!--botón Aceptar-->
+                        <button type="submit" class="botonAceptar" mat-raised-button color="primary"  (click)="createEditUser(id)" [disabled]="form.invalid">Aceptar</button>
+                    <!-- </mat-card-actions> -->
+                 </div>
+                
+            </form>
+        </mat-card>
+    
+        <mat-card class="card-ocultar">
+                <!--imagen-->          
+                <div class="ocultar">
+                    <img src="./assets/img/anadir-usuario.png"  >
+                </div>
+        </mat-card>
+    </div>
+
+</div>
