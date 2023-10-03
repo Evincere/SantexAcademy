@@ -371,7 +371,7 @@
 
       <div class="botonContainer">
         <button type="button" mat-raised-button color="primary" class="botonLimpiar" (click)="resetForm($event)">Limpiar Encuesta</button>
-        <button type="submit" mat-raised-button class="botonEnviar" [disabled]="!pasoUno.valid">Enviar Encuesta</button>
+        <button type="submit" mat-raised-button class="botonEnviar" [disabled]="!pasoUno.valid">Actualizar Encuesta</button>
       </div>
 
     </form>
@@ -381,6 +381,6 @@
 
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button type="button" (click)="cancelar()" mat-button>Cancel</button>
-  <button type="button" mat-button cdkFocusInitial>Install</button>
+  <button type="button" (click)="cancelar()" mat-button cdkFocusInitial>Cerrar</button>
+  
 </mat-dialog-actions>
