@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-
-
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AbstractControl, FormBuilder, FormGroup, FormGroupName, ValidationErrors, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -9,14 +7,11 @@ import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { Survey } from 'src/app/interfaces/Survey';
 import { UserService } from 'src/app/services/usuario.service'
-
-
 @Component({
   selector: 'app-ver-encuesta',
   templateUrl: './ver-encuesta.component.html',
   styleUrls: ['./ver-encuesta.component.css']
 })
-
 
 
 export class VerEncuestaComponent implements OnInit {

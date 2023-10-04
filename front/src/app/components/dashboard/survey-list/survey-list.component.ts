@@ -98,10 +98,17 @@ export class SurveyListComponent implements OnInit, AfterViewInit {
   }
 
   
-
   verEncuesta() {
     const dialogRef = this.dialog.open(VerEncuestaComponent, {
+      width: '95%',
+      disableClose: true
     });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Se cerro el dialog');
+    });
+
   }
+
 
 }

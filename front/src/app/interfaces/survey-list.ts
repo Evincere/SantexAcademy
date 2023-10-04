@@ -1,13 +1,13 @@
 export interface surveyList {
     id?: number; // jz id de registro de la encuesta
-    nombre: string;
-    apellido: string;
-    email: string;
+    nombre: string; //Nombre del encuestador
+    apellido: string; //Ap Encuestador
+    email: string; // email del encuestado
     questions: {
       [index: string]: string | boolean | number | null;
     };
-    surveyorId: number | null;
-    createdAt: Date; // jz
+    surveyorId: number | null; // id del encuestador
+    createdAt: Date; // fecha de la encuesta
     
   }
 
