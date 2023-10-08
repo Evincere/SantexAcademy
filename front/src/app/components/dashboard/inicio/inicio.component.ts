@@ -13,7 +13,7 @@ export class InicioComponent implements OnInit {
   ngOnInit(): void {
     setTimeout(() => {
       this.mostrarCard = true;
-    }, 2000);
+    }, 1000);
 
 
   }
