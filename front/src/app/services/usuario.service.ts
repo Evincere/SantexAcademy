@@ -47,6 +47,7 @@ export class UserService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${user.token}`
     });
+
     try {
       const usersObservable = this.http.post(`${this.appUrl}user/`, user, { headers });
       return await firstValueFrom(usersObservable);
@@ -115,7 +116,6 @@ export class UserService {
   }
 
   getUsersPaginator(page: number, pageSize: number): Observable<any> {
-
     return this.http.get(`${this.appUrl}user?page=${page}&pageSize=${pageSize}`);
   }
 }

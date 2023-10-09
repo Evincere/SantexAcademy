@@ -30,6 +30,8 @@ import { PieHospedajeRatingChartComponent } from './charts/pie-chart/pie-hospeda
 import { PieOficinaRatingChartComponent } from './charts/pie-chart/pie-oficina-rating-chart.component';
 import { BarGroupChartComponent } from './charts/bar-group-chart/bar-group-chart.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { DeleteConfirmComponent } from './usuarios/delete-confirm/delete-confirm.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 @NgModule({
@@ -52,7 +54,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     PieOtherChartComponent,
     PieHospedajeRatingChartComponent,
     PieOficinaRatingChartComponent,
-    BarGroupChartComponent
+    BarGroupChartComponent,
+    DeleteConfirmComponent
   ],
   imports: [
     CommonModule,
@@ -65,7 +68,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     MatButtonModule,
     MatFormFieldModule,
     MatCardModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    MatPaginatorModule
   ]
 })
 export class DashboardModule { }
