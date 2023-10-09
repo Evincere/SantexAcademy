@@ -29,8 +29,6 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-
-    // Si no hay errores, continúa con el controlador
     userController.createUser(req, res, next);
   },
 );

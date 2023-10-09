@@ -50,7 +50,6 @@ async function getUsers(req, res) {
     const page = parseInt(req.query.page || 1, 10);
     const pageSize = parseInt(req.query.pageSize || 10, 10);
     const offset = (page - 1) * pageSize;
-
     const users = await userService.findAll(offset, pageSize);
 
     // const users = await userService.findAll();
