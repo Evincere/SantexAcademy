@@ -107,7 +107,7 @@ export class UserService {
     });
     const id = user.id;
     try {
-      const updatedUser = await this.http.put<User>(`${this.appUrl}user/${id}`, user, { headers });
+      const updatedUser = this.http.put<User>(`${this.appUrl}user/${id}`, user, { headers });
       return firstValueFrom(updatedUser);
     } catch (error) {
       console.error('ERROR', error);

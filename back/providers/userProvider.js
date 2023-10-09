@@ -49,11 +49,19 @@ async function findById(id) {
 }
 
 async function updateUser(id, newData) {
+  const { password } = newData;
   try {
     const user = await User.findByPk(id);
     if (!user) {
       throw new Error('Usuario no encontrado');
     }
+    const passwordBd = user.password;
+    if (!bcrypt.compare(password, passwordBd)) {
+      newData.password = passwordBd;
+    } else {
+      newData.password = await bcrypt.hash(password, 10);
+    }
+
     await user.update(newData, { fields: Object.keys(newData) });
     return user;
   } catch (error) {
