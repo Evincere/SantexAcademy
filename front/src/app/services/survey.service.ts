@@ -1,25 +1,23 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from '../../environments/environment';
-import { firstValueFrom } from 'rxjs';
-import jwt_decode from 'jwt-decode';
-
 import { User } from '../interfaces/user';
+
 import { surveyList } from '../interfaces/survey-list'
 import { Survey } from '../interfaces/Survey';
 
+import { environment } from '../../environments/environment';
+import { Observable, firstValueFrom } from 'rxjs';
+import jwt_decode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
 })
 
 
-//jz Uso esta clase tanto para listar las encuestas como para ver detalle y actualizarlas
 export class SurveyService {
   private appUrl = environment.APP_URL;
 
   constructor(private http: HttpClient) { }
-
 
   //Traigo Datos del Usuario actual para evaluar si puede ver todas las encuestas
   
@@ -38,6 +36,7 @@ export class SurveyService {
     }
 
   }
+
 
   async getUserById(id: number): Promise<User> {
     const headers = new HttpHeaders({
@@ -61,13 +60,21 @@ export class SurveyService {
     });
     try {
       const surveysObservable = this.http.get<surveyList[]>(`${this.appUrl}api/surveys`, { headers });
+      console.log(surveysObservable);
+
       return await firstValueFrom(surveysObservable);
     } catch (error) {
       console.error(error);
       throw error;
     }
   }
-  
+
+  getSurveyPaginator(page: number, pageSize: number): Observable<any> {
+    console.log(page);
+    return this.http.get(`${this.appUrl}api/surveys?page=${page}&pageSize=${pageSize}`);
+  }
+
+
 }
 
 

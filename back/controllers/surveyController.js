@@ -47,10 +47,14 @@ async function getSurveysByEmail(req, res) {
 
 async function getAllSurveys(req, res) {
   try {
-    const surveys = await surveyService.findAll();
+    const page = parseInt(req.query.page || 1, 10);
+    const pageSize = parseInt(req.query.pageSize || 10, 10);
+    const offset = (page - 1) * pageSize;
+    const surveys = await surveyService.findAll(offset, pageSize);
+
     res.status(200).json(surveys);
   } catch (error) {
-    res.status(500).json({ message: 'Error al traer todas las encuestas' });
+    res.status(500).json({ message: 'Error al traer las encuestas' });
   }
 }
 

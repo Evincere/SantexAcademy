@@ -10,8 +10,8 @@ const findByEmail = async (email) => {
   return surveys;
 };
 
-const findAll = async () => {
-  const surveys = await surveyProvider.findAll();
+const findAll = async (offset, pageSize) => {
+  const surveys = await surveyProvider.findSurveysPaginated(offset, pageSize);
   return surveys;
 };
 

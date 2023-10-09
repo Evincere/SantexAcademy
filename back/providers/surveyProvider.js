@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const { Op } = require('sequelize');
 const { Survey } = require('../models');
 
@@ -21,9 +22,22 @@ async function getSurveysByEmail(email) {
   }
 }
 
-async function findAll() {
+// async function findAll() {
+//  try {
+//    const surveys = await Survey.findAll();
+//    return surveys;
+//  } catch (error) {
+//    throw new Error('Error al traer todos los registros');
+//  }
+// }
+async function findSurveysPaginated(offset, pageSize) {
   try {
-    const surveys = await Survey.findAll();
+    const surveys = await Survey.findAll({
+    // Define el desplazamiento (offset) en función de la página y el tamaño de la página.
+      offset,
+      limit: pageSize, // Define el número de resultados por página.
+    });
+
     return surveys;
   } catch (error) {
     throw new Error('Error al traer todos los registros');
@@ -116,7 +130,7 @@ async function getSurveysBySurveyorAndDates(surveyorId, startDate, endDate) {
 module.exports = {
   createSurvey,
   getSurveysByEmail,
-  findAll,
+  findSurveysPaginated,
   findById,
   deleteSurvey,
   updateSurvey,
