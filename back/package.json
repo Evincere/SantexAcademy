@@ -9,10 +9,10 @@
     "clean": "rimraf ./node_modules",
     "lint-staged": "npx lint-staged",
     "live": "nodemon server.js",
-    "db:create": "./node_modules/.bin/sequelize db:create",
-    "db:migrate": "./node_modules/.bin/sequelize db:migrate",
-    "db:migrate:undo": "./node_modules/.bin/sequelize db:migrate:undo",
-    "db:seed:all": "./node_modules/.bin/sequelize db:seed:all"
+    "db:create": "npx sequelize-cli db:create",
+    "db:migrate": "npx sequelize-cli db:migrate",
+    "db:migrate:undo": "npx sequelize-cli db:migrate:undo",
+    "db:seed:all": "npx sequelize-cli db:seed:all"
   },
   "dependencies": {
     "@sendgrid/mail": "^7.7.0",

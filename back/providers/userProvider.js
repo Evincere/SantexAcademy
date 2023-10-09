@@ -25,8 +25,8 @@ async function createUser(userDetails) {
 async function findUsersPaginated(offset, pageSize) {
   try {
     const users = await User.findAll({
-      offset, // Define el desplazamiento (offset) en función de la página y el tamaño de la página.
-      limit: pageSize, // Define el número de resultados por página.
+      offset,
+      limit: pageSize,
     });
 
     return users;
