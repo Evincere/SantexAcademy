@@ -16,14 +16,20 @@
     <!-- filtros -->
     <mat-form-field appearance="standard">
       <mat-label>Filter</mat-label>
-      <input
-        matInput
-        (keyup)="applyFilter($event)"
-        placeholder="Ex. ium"
-        #input
-        autocomplete="off"
-      />
+      <div class="filter-container">
+        <input
+          matInput
+          (keyup)="applyFilter($event)"
+          placeholder="Ex. ium"
+          #input
+          autocomplete="off"
+        />
+        <button mat-button (click)="input.value = ''" matSuffix mat-icon-button aria-label="Clear">
+          <mat-icon>clear</mat-icon>
+        </button>
+      </div>
     </mat-form-field>
+    
 
     <div class="mat-elevation-z3">
       <!-- tabla -->
