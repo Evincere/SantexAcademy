@@ -8,6 +8,7 @@ import { UserService } from 'src/app/services/usuario.service';
 import { VerUsuarioComponent } from './ver-usuario/ver-usuario.component';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteConfirmComponent } from './delete-confirm/delete-confirm.component';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-usuarios',
@@ -31,10 +32,15 @@ export class UsuariosComponent implements OnInit {
   router: any;
   user: any;
 
-  constructor(private userService: UserService, private _snackBar: MatSnackBar, public dialog: MatDialog) { }
+  constructor(
+    private userService: UserService,
+    private _snackBar: MatSnackBar,
+    public dialog: MatDialog,
+    private route: Router) { }
 
   ngOnInit(): void {
     this.cargarDatosDePagina(this.page, this.pageSize)
+
   }
   ngAfterViewInit() {
     if (this.paginator) {
@@ -47,13 +53,13 @@ export class UsuariosComponent implements OnInit {
       });
     }
   }
-  async cargarDatosDePagina(pageIndex: any, pageSize: any) {
+  async cargarDatosDePagina(pageIndex: any = 1, pageSize: any = 20) {
     this.listUsuarios = [];
     const token = localStorage.getItem('token');
     if (token !== null) {
       try {
         this.userService.getUsersPaginator(pageIndex, pageSize).subscribe((data) => {
-          console.log(data);
+
           this.listUsuarios = data;
           this.totalItems = this.listUsuarios.length;
           if (this.paginator) {
@@ -83,6 +89,13 @@ export class UsuariosComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+    if (!filterValue) {
+      this.cargarDatosDePagina();
+
+      this.dataSource.data = this.listUsuarios;
+      console.log(this.dataSource.data);
+
+    }
   }
 
   async deleteUser(id: number) {
@@ -108,7 +121,6 @@ export class UsuariosComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result === true) {
-        // El usuario confirmó la eliminación, procede a eliminar
         this.performDeleteUser(id, token);
       }
     });
@@ -138,7 +150,7 @@ export class UsuariosComponent implements OnInit {
   }
 
   search() {
-    this.router.navigate('/dashboard');
+    this.route.navigate(['dashboard/usuarios']);
   }
 
   abrirVistaDeUsuario(id: any): void {
@@ -158,4 +170,28 @@ export class UsuariosComponent implements OnInit {
     }
   }
 
+  async clearInput(input: any) {
+    input.value = '';
+    this.dataSource.filter = '';
+  }
+
+  async cargarTodosLosUsuarios() {
+    try {
+      this.userService.getUsersPaginator(this.page, this.pageSize).subscribe((data) => {
+        this.listUsuarios = data;
+        this.totalItems = this.listUsuarios.length;
+        if (this.paginator) {
+          this.paginator.length = this.totalItems;
+        }
+        this.dataSource.data = data;
+      });
+    } catch (error) {
+      console.error('Error al cargar usuarios:', error);
+      this._snackBar.open('Ocurrió un error al cargar la lista de usuarios. Por favor, inténtelo nuevamente.', '', {
+        duration: 3000,
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom'
+      });
+    }
+  }
 }
