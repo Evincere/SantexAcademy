@@ -33,6 +33,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { DeleteConfirmComponent } from './usuarios/delete-confirm/delete-confirm.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ChartsComponent } from './charts/charts/charts.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -71,7 +72,8 @@ import { ChartsComponent } from './charts/charts/charts.component';
     MatFormFieldModule,
     MatCardModule,
     NgxPaginationModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatIconModule 
   ]
 })
 export class DashboardModule { }

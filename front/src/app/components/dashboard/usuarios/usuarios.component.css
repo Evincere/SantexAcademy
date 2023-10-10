@@ -39,3 +39,8 @@ table {
   background-color:rgb(164, 213, 230);
   cursor: pointer; 
 }
+
+.filter-container {
+  display: flex;
+  align-items: center; 
+}
