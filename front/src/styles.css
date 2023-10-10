@@ -1,9 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+<<<<<<< HEAD
 /*.container{
+=======
+/* .container {
+>>>>>>> solfront
     margin-left: 100px;
     margin-right: 100px;
     margin-top: 5px;
@@ -14,7 +17,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   }
 
 .custom-snackbar {
-    background-color: #e91e63; 
     color: #fff; 
     border-radius: 4px; 
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
