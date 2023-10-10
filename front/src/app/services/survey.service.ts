@@ -50,6 +50,17 @@ export class SurveyService {
     return await firstValueFrom(usersObservable);
   }
 
+async getSurveyById(id: number): Promise<Survey> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+
+    // Usa template literals para construir la URL correctamente
+    const surveyObservable = this.http.get<Survey>("http://localhost:3000/api/surveys/" + id, { headers });
+
+    return await firstValueFrom(surveyObservable);
+  }
+
 
  //jz Traer Datos de los Encuestadores que realizaron cada Encuesta para el listado
 

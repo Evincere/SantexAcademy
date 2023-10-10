@@ -15,23 +15,25 @@
         
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z6" matSort>
 
-            <!-- Position Column
-    <ng-container matColumnDef="position">
-        <th mat-header-cell *matHeaderCellDef> id de Encuesta </th>
-        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-    </ng-container> -->
-            <!-- Name Column -->
-            <ng-container matColumnDef="nombre">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-                <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+            <!-- id Column -->
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
             </ng-container>
 
-            <!-- apellido Column -->
-            <ng-container matColumnDef="apellido">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Apellido </th>
-                <td mat-cell *matCellDef="let element"> {{element.apellido}} </td>
-            </ng-container>
 
+            <!-- Name Column
+    <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+    </ng-container>
+    -->
+            <!-- apellido Column
+    <ng-container matColumnDef="apellido">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Apellido </th>
+        <td mat-cell *matCellDef="let element"> {{element.apellido}} </td>
+    </ng-container>
+    -->
             <!-- email Column -->
             <ng-container matColumnDef="email">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
@@ -43,20 +45,19 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha Creación </th>
                 <td mat-cell *matCellDef="let element"> {{element.createdAt | date:'dd/MM/yyyy, h:mm a'}} </td>
             </ng-container>
-             
-            <!-- Fecha Completada Column
-                <ng-container matColumnDef="fechacompletada">
-                    <th mat-header-cell *matHeaderCellDef> Fecha Completada </th>
-                    <td mat-cell *matCellDef="let element"> {{element.fechacompletada}} </td>
-                </ng-container>
-                displayedColumns: string[] = ['nombre', 'apellido', 'email', 'fechacreacion'];
-                -->
 
+            <!-- Fecha Completada Column
+    <ng-container matColumnDef="fechacompletada">
+        <th mat-header-cell *matHeaderCellDef> Fecha Completada </th>
+        <td mat-cell *matCellDef="let element"> {{element.fechacompletada}} </td>
+    </ng-container>
+    displayedColumns: string[] = ['nombre', 'apellido', 'email', 'fechacreacion'];
+    -->
             <!-- Acciones Column --Continuar: (click)="openDialog()" (click)="verEncuesta()"-->
             <ng-container matColumnDef="acciones">
                 <th mat-header-cell *matHeaderCellDef> </th>
                 <td mat-cell *matCellDef="let element">
-                    <mat-icon class="pointer" matTooltip="Ver detalles" (click)="verEncuesta()">zoom_in</mat-icon>
+                    <mat-icon class="pointer" matTooltip="Ver detalles" (click)="verEncuesta(element.id)">zoom_in</mat-icon>
                     <mat-icon class="pointer" matTooltip="Eliminar Encuesta de {{element.nombre}}">delete</mat-icon>
                 </td>
             </ng-container>

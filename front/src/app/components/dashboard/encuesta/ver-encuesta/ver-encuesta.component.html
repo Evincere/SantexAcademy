@@ -2,6 +2,20 @@
 
 <mat-dialog-content >
 
+    <div *ngIf="survey != null">
+        <mat-card class="card">            
+            <mat-card-content>
+                
+                <p><strong>Id del Encuestador: </strong>{{survey.surveyorId}}</p>
+                <p><strong>email: </strong>{{survey.email}}</p>
+                <p><strong>Preguntas completadas: </strong>{{survey.questions}}</p>
+
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+
+<p></p>
 <div class="formulario">
     <form [formGroup]="pasoUno"  (ngSubmit)="enviar()">
       <mat-accordion class="example-headers-align">

@@ -1,22 +1,45 @@
-import { Component, OnInit } from '@angular/core';
+//i ver-usuario
+import { Component, Inject, OnInit } from '@angular/core';
+
+import { ActivatedRoute } from '@angular/router';
+import { first, firstValueFrom } from 'rxjs';
+//import { User } from 'src/app/interfaces/user';
+import { UserService } from 'src/app/services/usuario.service'
+
+import { Survey } from 'src/app/interfaces/Survey';
+import { SurveyService } from 'src/app/services/survey.service'
+
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AbstractControl, FormBuilder, FormGroup, FormGroupName, ValidationErrors, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { Survey } from 'src/app/interfaces/Survey';
-import { UserService } from 'src/app/services/usuario.service'
-import { Observable, firstValueFrom, map, startWith } from 'rxjs';
+
+
+
+//i orig
+//import { Component, OnInit } from '@angular/core';
+//import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+//import { AbstractControl, FormBuilder, FormGroup, FormGroupName, ValidationErrors, Validators } from '@angular/forms';
+//import { MatSnackBar } from '@angular/material/snack-bar';
+//import { HttpClient, HttpHeaders } from '@angular/common/http';
+//import { Router } from '@angular/router';
+//import { environment } from 'src/environments/environment';
+//import { Survey } from 'src/app/interfaces/Survey';
+//import { UserService } from 'src/app/services/usuario.service'
+//import { Observable, firstValueFrom, map, startWith } from 'rxjs';
+
 @Component({
   selector: 'app-ver-encuesta',
   templateUrl: './ver-encuesta.component.html',
   styleUrls: ['./ver-encuesta.component.css']
 })
 
-
-
 export class VerEncuestaComponent implements OnInit {
+
+  survey!: Survey;
+
 
   setcheckbox = true;
   
@@ -47,9 +70,14 @@ export class VerEncuestaComponent implements OnInit {
     private fb: FormBuilder,
     private _snackBar: MatSnackBar, 
     private http: HttpClient,
+    private aRoute:ActivatedRoute,
     private userService: UserService,
-    private route: Router) {
-
+    private surveyService: SurveyService,
+    //ver que onda
+    private route: Router,
+    @Inject(MAT_DIALOG_DATA) public data: { id: number },
+    ) {
+  
       //pregunta 9
       this.pregunta9 = this.fb.group({
         television: [false],
@@ -205,7 +233,23 @@ export class VerEncuestaComponent implements OnInit {
 
     }
 
-  ngOnInit(): void {}
+
+//ngOnInit(): void {
+  
+  async  ngOnInit() {
+    this.survey = await this.getSurveyById(this.data.id); 
+  }
+
+  async getSurveyById(surveyId: number): Promise<Survey> {
+    try {
+      const dataSurvey = await this.surveyService.getSurveyById(surveyId);
+      return dataSurvey;
+    } catch (error) {
+      console.error('Error al obtener la encuesta:', error);
+      throw new Error('Encuesta no encontrada');
+    }
+  }
+
 
   cancelar() {
      this.dialogRef.close();

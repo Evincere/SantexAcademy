@@ -69,7 +69,7 @@ export class SurveyListComponent implements OnInit, AfterViewInit {
 
   listEncuestas: surveyList[] = [];
 
-  displayedColumns: string[] = ['nombre', 'apellido', 'email', 'createdAt', 'acciones'];
+  displayedColumns: string[] = ['id','email', 'createdAt', 'acciones'];
 
   dataSource!: MatTableDataSource<surveyList>; // aqui le paso la interface
 
@@ -127,10 +127,11 @@ export class SurveyListComponent implements OnInit, AfterViewInit {
   }
 
 
-  verEncuesta() {
+  verEncuesta(id: any): void {
     const dialogRef = this.dialog.open(VerEncuestaComponent, {
       width: '95%',
-      disableClose: true
+      disableClose: true,
+      data: { id: id },
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -139,6 +140,7 @@ export class SurveyListComponent implements OnInit, AfterViewInit {
 
   }
 
-
-
 }
+
+
+
