@@ -1,11 +1,12 @@
 <div class="container">
   <div class="row">
+    
     <div class="col-6">
-      <h2>
+      <h4 class="text-center">
         ¿Se considera a Mina Clavero como un destino completo?
-      </h2>
+      </h4>
       <ngx-charts-pie-chart
-        [view]="[400, 300]"
+        [view]="[300, 200]"
         [scheme]="colorScheme"
         [results]="destinoCompletoData"
         [labels]="true"
@@ -13,10 +14,13 @@
         (select)="onSelect($event)"
       ></ngx-charts-pie-chart>
     </div>
+    
+    
+      
     <div class="col-6">
-      <h2>¿Los turistas recomendarían Mina Clavero como destino turístico?</h2>
+      <h4 class="text-center">¿Los turistas recomendarían Mina Clavero como destino turístico?</h4>
       <ngx-charts-pie-chart
-        [view]="[400, 300]"
+        [view]="[300, 200]"
         [scheme]="colorScheme"
         [results]="recomendariaData"
         [labels]="true"

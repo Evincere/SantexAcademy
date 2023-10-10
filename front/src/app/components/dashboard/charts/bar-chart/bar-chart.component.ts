@@ -30,11 +30,11 @@ export class BarChartComponent implements OnInit {
     }
   ];
 
-  materialView: [number, number] = [600, 400];
+  materialView: [number, number] = [500, 400];
   materialShowXAxis: boolean = true;
   materialShowYAxis: boolean = true;
   materialGradient: boolean = false;
-  colorScheme: any = 'ocean'
+  colorScheme: any = 'cool'
   legendPosition: any = 'right';
 
   ngOnInit(): void {

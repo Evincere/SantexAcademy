@@ -1,8 +1,8 @@
 
 
-.toolbar{
+/*.toolbar{
   background-color: #245683;
-}
+}*/
 
   .example-icon {
     color: #FEA31C;
@@ -19,3 +19,13 @@
     color: #FEA31C; 
   }
 
+  .toolbar.barra-fija {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #245683;
+    z-index: 1000; /* Asegura que esté en la parte superior de otros elementos */
+    /* Otros estilos según tus preferencias */
+  }
+  

@@ -30,7 +30,7 @@ export class PieOtherChartComponent implements OnInit {
     }
   ];
 
-  view: [number, number] = [600, 400];
+  view: [number, number] = [500, 400];
 
   gradient: boolean = true;
   showLegend: boolean = true;
@@ -38,7 +38,7 @@ export class PieOtherChartComponent implements OnInit {
   isDoughnut: boolean = false;
   legendPosition: any = 'right';
   colorScheme: string = 'ocean';
-
+  legendTitle: any = 'Referencia';
   constructor() {
     Object.assign(this, this.data);
   }

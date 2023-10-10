@@ -37,15 +37,15 @@ export class PieHospedajeRatingChartComponent implements OnInit {
     }
   ];
 
-  view: [number, number] = [600, 400];
+  view: [number, number] = [500, 400];
 
   gradient: boolean = true;
   showLegend: boolean = true;
   showLabels: boolean = true;
   isDoughnut: boolean = false;
   legendPosition: any = 'right';
-  colorScheme: string = 'neons';
-
+  colorScheme: string = 'cool';
+  legendTitle: any = 'Referencia';
   constructor() {
     Object.assign(this,  this.data );
    }

@@ -7,8 +7,9 @@ import { Color } from '@swimlane/ngx-charts';
   styleUrls: ['./bar-group-chart.component.css']
 })
 export class BarGroupChartComponent implements OnInit {
+  
   // Configuración de colores
-  colorScheme: any = 'ocean'
+  colorScheme: any = 'cool'
   // Datos para "¿Considera a Mina Clavero como un destino completo en cuanto a su oferta y servicios?"
   destinoCompletoData = [
     {
