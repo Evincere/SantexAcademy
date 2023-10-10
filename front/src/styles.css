@@ -2,16 +2,6 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-<<<<<<< HEAD
-/*.container{
-=======
-/* .container {
->>>>>>> solfront
-    margin-left: 100px;
-    margin-right: 100px;
-    margin-top: 5px;
-}*/
-
 .example-spacer {
     flex: 1 1 auto;
   }
