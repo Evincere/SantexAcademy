@@ -34,8 +34,8 @@ export class PieChartComponent implements OnInit {
       
   ];
 
-  view: [number, number] = [600, 400];
-
+  view: [number, number] = [500, 400];
+  legendTitle: any = 'Referencia';
   gradient: boolean = true;
   showLegend: boolean = true;
   showLabels: boolean = true;

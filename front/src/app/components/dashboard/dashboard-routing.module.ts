@@ -12,6 +12,7 @@ import { AuthGuard } from '../../guards/auth.guard';
 import { RoleGuard } from 'src/app/guards/role.guard';
 import { ChangePasswordComponent } from './usuarios/change-password/change-password.component';
 import { VistaChartComponent } from './charts/vista-chart/vista-chart.component';
+import { ChartsComponent } from './charts/charts/charts.component';
 
 const routes: Routes = [
   {
@@ -27,7 +28,8 @@ const routes: Routes = [
     { path: "survey-list", component: SurveyListComponent }, //jz
     { path: "ver-encuesta", component: VerEncuestaComponent }, //jz
     { path: 'change-password', component: ChangePasswordComponent },
-    { path: 'estadisticas', component: VistaChartComponent}
+    { path: 'estadisticas', component: VistaChartComponent},
+    { path: 'charts', component: ChartsComponent}
   ]}
 ];
 

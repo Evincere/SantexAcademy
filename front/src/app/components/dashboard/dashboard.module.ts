@@ -32,6 +32,7 @@ import { BarGroupChartComponent } from './charts/bar-group-chart/bar-group-chart
 import { NgxPaginationModule } from 'ngx-pagination';
 import { DeleteConfirmComponent } from './usuarios/delete-confirm/delete-confirm.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { ChartsComponent } from './charts/charts/charts.component';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     PieHospedajeRatingChartComponent,
     PieOficinaRatingChartComponent,
     BarGroupChartComponent,
-    DeleteConfirmComponent
+    DeleteConfirmComponent,
+    ChartsComponent
   ],
   imports: [
     CommonModule,

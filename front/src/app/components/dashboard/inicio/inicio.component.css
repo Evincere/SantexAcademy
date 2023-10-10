@@ -11,6 +11,7 @@
    padding-top: 8px;
    margin-left: 100px;
    margin-right: 100px; 
+   margin-top: 60px;
 }
 
 .mat-card {
@@ -28,43 +29,7 @@
    opacity: 1 !important;
    transition: all 0.5s;
  }
-
- /*#sel-encuesta:hover{
-  background-color:rgba(200, 153, 176, 0.9) !important;
-  cursor: pointer; 
-  opacity: 1 !important;
-  transition: all 0.5s;
- }
-
- #sel-mapa:hover{
-  background-color:rgba(134,195,140,0.9) !important;
-  cursor: pointer; 
-  opacity: 1 !important;
-  transition: all 0.5s;
- }
-
- #sel-muni:hover{
-  background-color: #245683 !important;
-  cursor: pointer; 
-  opacity: 1 !important;
-  transition: all 0.5s;
- }
-
- #sel-usuario:hover{
-  background-color: #eac287 !important;
-  cursor: pointer; 
-  opacity: 1 !important;
-  transition: all 0.5s;
- }
-
- #sel-graficos:hover{
-  background-color:rgba(122, 98, 143, 0.9) !important;
-  cursor: pointer; 
-  opacity: 1 !important;
-  transition: all 0.5s;
- }*/
-
-
+ 
 .contenedor-icono {
   text-align: center;
 }
@@ -77,6 +42,23 @@
 .texto-icono {
   color:#245683 !important;
   font-weight: bold;
+}
+
+
+/* Estilos para pantallas pequeñas (menos de 768px de ancho, puedes ajustar el valor según tus necesidades) */
+@media (max-width: 768px) {
+  .mat-card-container {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .imagen-icono {
+    width: 50px; 
+  }
+
+  .texto-icono {
+    font-size: 15px; 
+  }
 }
 
 

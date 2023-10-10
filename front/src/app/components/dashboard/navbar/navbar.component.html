@@ -30,7 +30,7 @@
     <button mat-button *ngIf="authService.hasRole('admin')" [routerLink]="['/crear-usuario']">Crear Usuario</button>
     <button mat-button *ngIf="authService.hasRole(['admin', 'encuestador'])" [routerLink]="['/encuesta']">Encuesta</button> -->
 
-    <mat-toolbar class="toolbar">
+    <mat-toolbar class="toolbar barra-fija">
       <img src="./assets/img/logo.png" width="13%">
     
       <span class="example-spacer"></span>

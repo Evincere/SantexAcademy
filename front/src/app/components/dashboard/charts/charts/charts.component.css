@@ -1,0 +1,35 @@
+
+ mat-toolbar img{
+    width: 60px;
+    height: 60px;
+    margin-right: 11px;
+  }
+
+.mat-card-container{
+    background-color:#245683;
+}
+
+ .container-card{
+    margin-top: 8px;
+    margin-bottom: 10px;
+ }
+
+ mat-card{
+    background-color:white;
+ }
+
+ mat-card-content{
+    margin-bottom: 0;
+ }
+
+
+ .titulo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #baf0d8;
+    margin-bottom: 25px;
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+  
