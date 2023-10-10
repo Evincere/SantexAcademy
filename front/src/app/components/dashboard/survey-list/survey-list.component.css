@@ -1,0 +1,51 @@
+table {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+ 
+.pointer{
+  display: inline;
+  cursor: pointer;
+  color: #1f516f;
+  transition: transform 0.2s ease-in-out;
+}
+
+.pointer:hover {
+  transform: scale(1.2);
+}
+
+.mat-form-field {
+  font-size: 15px;
+  /* width: 100%; */
+}
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: 25%;
+}
+
+.botonagregar{
+  background-color: #FEA31C;
+  color: white;
+}
+.mat-cell-content-long {
+  white-space: nowrap; /* Evita el salto de línea */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Agrega puntos suspensivos si el contenido es muy largo */
+}
+
+.btnDetalle, .btnDelete {
+  cursor: pointer;
+  color: #1f516f;
+  transition: transform 0.2s ease-in-out;
+  display: inline;
+}
+
+.btnDetalle:hover, .btnDelete:hover {
+  transform: scale(1.2);
+}

@@ -21,6 +21,19 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { SurveyListComponent } from './survey-list/survey-list.component'; //jz
+import { VerEncuestaComponent } from './encuesta/ver-encuesta/ver-encuesta.component';
+import { VistaChartComponent } from './charts/vista-chart/vista-chart.component';
+import { PieChartComponent } from './charts/pie-chart/pie-chart.component'; //jz
+import { PieOtherChartComponent } from './charts/pie-chart/pie-hospedaje-chart.component';
+import { PieHospedajeRatingChartComponent } from './charts/pie-chart/pie-hospedaje-rating-chart.component';
+import { PieOficinaRatingChartComponent } from './charts/pie-chart/pie-oficina-rating-chart.component';
+import { BarGroupChartComponent } from './charts/bar-group-chart/bar-group-chart.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { DeleteConfirmComponent } from './usuarios/delete-confirm/delete-confirm.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { ChartsComponent } from './charts/charts/charts.component';
+
 
 @NgModule({
   declarations: [
@@ -35,7 +48,16 @@ import { MatInputModule } from '@angular/material/input';
     LogoutConfirmationComponent,
     BarChartComponent,
     ChangePasswordComponent,
-  
+    SurveyListComponent, 
+    VerEncuestaComponent,
+    VistaChartComponent, 
+    PieChartComponent, 
+    PieOtherChartComponent,
+    PieHospedajeRatingChartComponent,
+    PieOficinaRatingChartComponent,
+    BarGroupChartComponent,
+    DeleteConfirmComponent,
+    ChartsComponent
   ],
   imports: [
     CommonModule,
@@ -48,6 +70,8 @@ import { MatInputModule } from '@angular/material/input';
     MatButtonModule,
     MatFormFieldModule,
     MatCardModule,
+    NgxPaginationModule,
+    MatPaginatorModule
   ]
 })
 export class DashboardModule { }

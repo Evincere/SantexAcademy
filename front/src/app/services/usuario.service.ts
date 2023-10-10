@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../interfaces/user'
 import { environment } from '../../environments/environment';
-import { firstValueFrom } from 'rxjs';
+import { Observable, firstValueFrom } from 'rxjs';
 import jwt_decode from 'jwt-decode';
 
 @Injectable({
@@ -47,6 +47,7 @@ export class UserService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${user.token}`
     });
+
     try {
       const usersObservable = this.http.post(`${this.appUrl}user/`, user, { headers });
       return await firstValueFrom(usersObservable);
@@ -106,7 +107,7 @@ export class UserService {
     });
     const id = user.id;
     try {
-      const updatedUser = await this.http.put<User>(`${this.appUrl}user/${id}`, user, { headers });
+      const updatedUser = this.http.put<User>(`${this.appUrl}user/${id}`, user, { headers });
       return firstValueFrom(updatedUser);
     } catch (error) {
       console.error('ERROR', error);
@@ -114,4 +115,9 @@ export class UserService {
     }
   }
 
+  getUsersPaginator(page: number, pageSize: number): Observable<any> {
+    return this.http.get(`${this.appUrl}user?page=${page}&pageSize=${pageSize}`);
+  }
 }
+
+

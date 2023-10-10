@@ -12,9 +12,9 @@ async function registerUser(userDetails) {
   return userProvider.createUser(userDetails);
 }
 
-const findAll = async () => {
-  const surveys = await userProvider.findAll();
-  return surveys;
+const findAll = async (offset, pageSize) => {
+  const users = await userProvider.findUsersPaginated(offset, pageSize);
+  return users;
 };
 
 const findById = async (id) => {

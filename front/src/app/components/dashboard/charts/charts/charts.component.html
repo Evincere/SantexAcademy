@@ -1,0 +1,81 @@
+
+<div class="container">
+<mat-toolbar>
+    <img src="./../../../../assets/img/logoturismo.png" alt="logo de turismo" />
+    <span>Estadísticas</span>
+    <div class="example-spacer"></div>
+</mat-toolbar>
+
+
+
+<div class="container-card">
+    <mat-card class="mat-card-container mat-elevation-z10">
+        <!--Hospedaje-->
+        <mat-card>
+            <div style="display: flex; justify-content: space-between;">
+              <mat-card-content style="flex: 1; border-right: 1px solid #ccc;">
+                <mat-card class="titulo">
+                  <h1>Hospedaje-Tipo</h1>
+                </mat-card>
+                <app-pie-hospedaje-chart style="width: 100%; height: auto;"></app-pie-hospedaje-chart>
+              </mat-card-content>
+          
+              <mat-card-content style="flex: 1;">
+                <mat-card class="titulo">
+                  <h1>Hospedaje-Calidad</h1>
+                </mat-card>
+                <app-pie-hospedaje-rating-chart style="width: 100%; height: auto;"></app-pie-hospedaje-rating-chart>
+              </mat-card-content>
+            </div>
+          </mat-card>
+          
+        <br>
+        
+        <!--Como se entero de mina clavero-->
+        <mat-card>
+            <div style="display: flex; justify-content: space-between;">
+              <mat-card-content style="flex: 1; border-right: 1px solid #ccc;">
+                <mat-card class="titulo">
+                    <h1>Cómo conoció Mina Clavero</h1>
+                </mat-card>
+                <app-pie-chart style="width: 100%; height: auto;"></app-pie-chart>
+              </mat-card-content>
+
+        <!--Como se entero de mina clavero-->
+              <mat-card-content style="flex: 1;">
+                <mat-card class="titulo">
+                    <h1>Calidad de atención-Oficina de Turismo</h1>
+                </mat-card> 
+                <app-pie-oficina-rating-chart style="width: 100%; height: auto;"></app-pie-oficina-rating-chart>
+              </mat-card-content>
+            </div>
+        </mat-card>
+        <br>
+        
+         <!--información oficina de turismo-->
+        <mat-card>
+            <div style="display: flex; justify-content: space-between;">
+              <mat-card-content style="flex: 1; border-right: 1px solid #ccc;">
+                <mat-card class="titulo">
+                    <h1>Formato de información más utilizado</h1>
+                </mat-card>
+                <app-bar-chart style="width: 100%; height: auto;"></app-bar-chart>
+              </mat-card-content>
+
+        <!--Opinión general-->
+              <mat-card-content style="flex: 1;">
+                <mat-card class="titulo" style="margin-bottom: 90px;">
+                    <h1>Opinión General</h1>
+                </mat-card> 
+                <app-bar-group-chart style="width: 100%; height: auto;"></app-bar-group-chart>
+              </mat-card-content>
+            </div>
+        </mat-card>
+        <br>
+        
+    </mat-card>
+    <br>
+   
+</div>
+
+</div>

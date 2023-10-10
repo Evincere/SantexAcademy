@@ -22,9 +22,13 @@ async function createUser(userDetails) {
   return User.create({ ...userDetails, password: hashedPassword });
 }
 
-async function findAll() {
+async function findUsersPaginated(offset, pageSize) {
   try {
-    const users = await User.findAll();
+    const users = await User.findAll({
+      offset,
+      limit: pageSize,
+    });
+
     return users;
   } catch (error) {
     throw new Error('Error al traer todos los registros');
@@ -45,11 +49,19 @@ async function findById(id) {
 }
 
 async function updateUser(id, newData) {
+  const { password } = newData;
   try {
     const user = await User.findByPk(id);
     if (!user) {
       throw new Error('Usuario no encontrado');
     }
+    const passwordBd = user.password;
+    if (!bcrypt.compare(password, passwordBd)) {
+      newData.password = passwordBd;
+    } else {
+      newData.password = await bcrypt.hash(password, 10);
+    }
+
     await user.update(newData, { fields: Object.keys(newData) });
     return user;
   } catch (error) {
@@ -89,7 +101,7 @@ module.exports = {
   getUserByUsername,
   comparePasswords,
   createUser,
-  findAll,
+  findUsersPaginated,
   findById,
   updateUser,
   deleteUser,

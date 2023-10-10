@@ -1,21 +1,15 @@
-<div class="container">
-  <div class="row">
-    <div class="col-6">
-      <ngx-charts-bar-vertical
-        [view]="view"
-        [scheme]="colorScheme"
-        [results]="data"
-        [gradient]="gradient"
-        [xAxis]="showXAxis"
-        [yAxis]="showYAxis"
-        [legend]="showLegend"
-        [showXAxisLabel]="showXAxisLabel"
-        [showYAxisLabel]="showYAxisLabel"
-        [xAxisLabel]="xAxisLabel"
-        [yAxisLabel]="yAxisLabel"
-        (select)="onSelect($event)"
-      >
-      </ngx-charts-bar-vertical>
-    </div>
-  </div>
-</div>
+  <ngx-charts-bar-vertical
+    [view]="materialView"
+    [scheme]="colorScheme"
+    [results]="materialData"
+    [gradient]="materialGradient"
+    [xAxis]="materialShowXAxis"
+    [yAxis]="materialShowYAxis"
+    [legend]="true"
+    [legendPosition]="legendPosition"
+    [showXAxisLabel]="true"
+    [showYAxisLabel]="true"
+    [xAxisLabel]="'Material'"
+    [yAxisLabel]="'Cantidad'"
+  >
+  </ngx-charts-bar-vertical>

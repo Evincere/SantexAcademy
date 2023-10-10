@@ -11,7 +11,12 @@
     },
     {
         "nombre": "Encuesta",
-        "redirect":"/dashboard/encuesta",
+        "redirect": "/dashboard/encuesta",
+        "roles": "['admin', 'encuestador']"
+    },
+    {
+        "nombre": "Listado de Encuestas",
+        "redirect": "/dashboard/survey-list",
         "roles": "['admin', 'encuestador']"
     }
 ]

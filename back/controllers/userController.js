@@ -47,10 +47,15 @@ async function createUser(req, res, next) {
 
 async function getUsers(req, res) {
   try {
-    const users = await userService.findAll();
+    const page = parseInt(req.query.page || 1, 10);
+    const pageSize = parseInt(req.query.pageSize || 10, 10);
+    const offset = (page - 1) * pageSize;
+    const users = await userService.findAll(offset, pageSize);
+
+    // const users = await userService.findAll();
     res.status(200).json(users);
   } catch (error) {
-    res.status(500).json({ message: 'Error al traer todos los usuarios' });
+    res.status(500).json({ message: 'Error al traer usuarios paginados' });
   }
 }
 
@@ -127,7 +132,6 @@ async function changePassword(req, res) {
     await user.changePassword(hashedPassword);
     return res.status(200).json({ message: 'Contraseña cambiada con éxito' });
   } catch (error) {
-    console.error('Error al cambiar la contraseña:', error);
     return res.status(500).json({ message: 'Error interno del servidor' });
   }
 }

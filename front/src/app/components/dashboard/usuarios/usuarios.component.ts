@@ -7,7 +7,7 @@ import { User } from 'src/app/interfaces/user';
 import { UserService } from 'src/app/services/usuario.service';
 import { VerUsuarioComponent } from './ver-usuario/ver-usuario.component';
 import { MatDialog } from '@angular/material/dialog';
-
+import { DeleteConfirmComponent } from './delete-confirm/delete-confirm.component';
 
 @Component({
   selector: 'app-usuarios',
@@ -16,47 +16,69 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class UsuariosComponent implements OnInit {
 
-  listUsuarios: User[]= [];
+  listUsuarios: User[] = [];
+  pageSizeOptions: number[] = [5, 10, 20];
+  pageSize: number = 20; // Tamaño de página inicial
+  showFirstLastButtons: boolean = true;
+  totalItems: number = 0;
+  page: number = 1;
+  displayedColumns: string[] = ["firstName", "lastName", "username", "email", "phone", "rol", "acciones"];
 
-  displayedColumns: string[] = [ "firstName", "lastName", "username", "email", "phone", "rol", "acciones"];
-  
-  dataSource!: MatTableDataSource<any>;
+  dataSource: MatTableDataSource<User> = new MatTableDataSource();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   router: any;
   user: any;
 
-
   constructor(private userService: UserService, private _snackBar: MatSnackBar, public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.cargarUsuarios(); 
+    this.cargarDatosDePagina(this.page, this.pageSize)
   }
-
-  async cargarUsuarios() {
+  ngAfterViewInit() {
+    if (this.paginator) {
+      this.paginator.page.subscribe((event) => {
+        const pageIndex = event.pageIndex;
+        this.page = pageIndex;
+        const pageSize = event.pageSize;
+        this.pageSize = pageSize;
+        this.cargarDatosDePagina(pageIndex, pageSize);
+      });
+    }
+  }
+  async cargarDatosDePagina(pageIndex: any, pageSize: any) {
     this.listUsuarios = [];
     const token = localStorage.getItem('token');
     if (token !== null) {
       try {
-        this.listUsuarios = await this.userService.getUsers(token);
-        this.dataSource = new MatTableDataSource(this.listUsuarios);
+        this.userService.getUsersPaginator(pageIndex, pageSize).subscribe((data) => {
+          console.log(data);
+          this.listUsuarios = data;
+          this.totalItems = this.listUsuarios.length;
+          if (this.paginator) {
+            this.paginator.length = this.totalItems;
+          }
+          this.dataSource.data = data;
+        });
       } catch (error) {
         console.error('Error al cargar usuarios:', error);
-      } 
-      } else {
-        this._snackBar.open('Debe iniciar sesión con rol Admin para acceder a la lista de usuarios', '', {
+        this._snackBar.open('Ocurrió un error al cargar la lista de usuarios. Por favor, inténtelo nuevamente.', '', {
           duration: 3000,
           horizontalPosition: 'center',
           verticalPosition: 'bottom'
         });
+      }
+    } else {
+      this._snackBar.open('Debe iniciar sesión con rol Admin para acceder a la lista de usuarios', '', {
+        duration: 3000,
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom'
+      });
     }
   }
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
+
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -65,7 +87,6 @@ export class UsuariosComponent implements OnInit {
 
   async deleteUser(id: number) {
     const token = localStorage.getItem('token');
-    console.log(id);
     if (!token) {
       this._snackBar.open(
         'Debe iniciar sesión con rol Admin para acceder a la lista de usuarios',
@@ -78,14 +99,30 @@ export class UsuariosComponent implements OnInit {
       );
       return; // Salir de la función si no hay token
     }
-  
+
+    const userToDelete = await this.userService.getUserById(id);
+    const dialogRef = this.dialog.open(DeleteConfirmComponent, {
+      width: '400px',
+      data: { user: userToDelete }
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === true) {
+        // El usuario confirmó la eliminación, procede a eliminar
+        this.performDeleteUser(id, token);
+      }
+    });
+  }
+
+  private async performDeleteUser(id: number, token: string) {
     try {
+      // Eliminar el usuario
       await this.userService.deleteUser({ userId: id, token });
-      this.cargarUsuarios();
+      this.cargarDatosDePagina(this.page, this.pageSize);
       this._snackBar.open('Usuario eliminado con éxito.', '', {
         duration: 1500,
         horizontalPosition: 'center',
-        verticalPosition: 'bottom'
+        verticalPosition: 'bottom',
       });
     } catch (error) {
       this._snackBar.open(
@@ -94,22 +131,31 @@ export class UsuariosComponent implements OnInit {
         {
           duration: 3000,
           horizontalPosition: 'center',
-          verticalPosition: 'bottom'
+          verticalPosition: 'bottom',
         }
       );
     }
   }
-    
-  search(){
+
+  search() {
     this.router.navigate('/dashboard');
   }
 
   abrirVistaDeUsuario(id: any): void {
-    const dialogRef = this.dialog.open(VerUsuarioComponent, {
+    this.dialog.open(VerUsuarioComponent, {
       width: '700px',
-      disableClose:true, 
-      data: {id: id},
+      disableClose: true,
+      data: { id: id },
     });
+  }
+
+  cambiarPagina(event: any): void {
+    this.page = event.pageIndex + 1; // Sumar 1 para que la página comience desde 1 en lugar de 0
+    const newPageSize = event.pageSize;
+    if (this.pageSize !== newPageSize) {
+      this.pageSize = newPageSize;
+      this.cargarDatosDePagina(this.page, newPageSize); // Vuelve a cargar los usuarios con el nuevo tamaño de página
+    }
   }
 
 }

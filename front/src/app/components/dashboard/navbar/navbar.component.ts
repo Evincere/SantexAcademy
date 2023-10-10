@@ -28,6 +28,11 @@ export class NavbarComponent implements OnInit {
       redirect: '/dashboard/encuesta',
       roles: ['admin', 'encuestador']
     },
+    {
+      nombre: 'Listado de Encuestas',
+      redirect: '/dashboard/survey-list',
+      roles: ['admin', 'encuestador']
+    },
   ];
 
 

@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../../../services/usuario.service';
-import { User } from 'src/app/interfaces/user';
+
 
 @Component({
   selector: 'app-crear-usuario',
@@ -14,7 +14,8 @@ export class CrearUsuarioComponent implements OnInit {
   rol: any[] = ["Admin" , "Encuestador"];
   form: FormGroup;
   id:number;
-  
+  @Output() usuarioCreadoEditado: EventEmitter<void> = new EventEmitter<void>();
+
   operacion: string="Agregar";
 
   constructor(private fb: FormBuilder,
@@ -84,6 +85,7 @@ export class CrearUsuarioComponent implements OnInit {
           horizontalPosition: "center",
           verticalPosition: "bottom"
         });
+        this.usuarioCreadoEditado.emit();
         this.router.navigate(['/dashboard/usuarios']);
       } catch (error) {
         console.error('Error al editar usuario:', error);
@@ -96,7 +98,6 @@ export class CrearUsuarioComponent implements OnInit {
       const userData = this.form.value;
       const token = localStorage.getItem('token');
       userData.token = token;
-      console.log(userData);
       try {
         await this.userService.createUser(userData);
         this._snackBar.open("El usuario fue creado con éxito!", "", {
@@ -104,6 +105,7 @@ export class CrearUsuarioComponent implements OnInit {
           horizontalPosition: "center",
           verticalPosition: "bottom"
         });
+        this.usuarioCreadoEditado.emit();
         this.router.navigate(['/dashboard/usuarios']);
       } catch (error) {
         console.error('Error al crear usuario:', error);
