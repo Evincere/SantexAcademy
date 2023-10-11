@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+const { Op } = require('sequelize');
 const { User } = require('../models');
 
 async function getUserByUsername(userName) {
@@ -97,6 +98,23 @@ async function restoreUser(id) {
   }
 }
 
+async function findUsersNotActivePaginated(offset, pageSize) {
+  try {
+    const users = await User.findAll({
+      where: {
+        deletedAt: { [Op.not]: null },
+      },
+      paranoid: false,
+      offset,
+      limit: pageSize,
+    });
+    console.log({ users });
+    return users;
+  } catch (error) {
+    throw new Error('Error al traer usuarios no activos paginados');
+  }
+}
+
 module.exports = {
   getUserByUsername,
   comparePasswords,
@@ -106,4 +124,5 @@ module.exports = {
   updateUser,
   deleteUser,
   restoreUser,
+  findUsersNotActivePaginated,
 };

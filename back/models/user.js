@@ -29,6 +29,7 @@ module.exports = (sequelize) => {
       email: DataTypes.STRING,
       rol: DataTypes.STRING,
       phone: DataTypes.STRING,
+      deletedAt: DataTypes.DATE,
     },
     {
       sequelize,

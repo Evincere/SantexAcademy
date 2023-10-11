@@ -12,7 +12,7 @@ async function registerUser(userDetails) {
   return userProvider.createUser(userDetails);
 }
 
-const findAll = async (offset, pageSize) => {
+const findAllActiveUsers = async (offset, pageSize) => {
   const users = await userProvider.findUsersPaginated(offset, pageSize);
   return users;
 };
@@ -36,12 +36,18 @@ const restoreUser = async (id) => {
   return userRestored;
 };
 
+const findNotActiveUsers = async (offset, pageSize) => {
+  const users = await userProvider.findUsersNotActivePaginated(offset, pageSize);
+  return users;
+};
+
 module.exports = {
   authenticateUser,
   registerUser,
-  findAll,
+  findAllActiveUsers,
   findById,
   updateUser,
   deleteUser,
   restoreUser,
+  findNotActiveUsers,
 };

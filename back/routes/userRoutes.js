@@ -40,7 +40,7 @@ router.put(
   userController.updateUser,
 );
 
-router.put('/:id/restore', userController.restoreUser);
+router.put('/restore/:id', userController.restoreUser);
 
 router.delete(
   '/:id',
