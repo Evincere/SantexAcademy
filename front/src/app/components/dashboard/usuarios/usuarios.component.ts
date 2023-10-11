@@ -9,6 +9,7 @@ import { VerUsuarioComponent } from './ver-usuario/ver-usuario.component';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteConfirmComponent } from './delete-confirm/delete-confirm.component';
 import { Route, Router } from '@angular/router';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-usuarios',
@@ -19,29 +20,37 @@ export class UsuariosComponent implements OnInit {
 
   listUsuarios: User[] = [];
   pageSizeOptions: number[] = [5, 10, 20];
-  pageSize: number = 20; // Tamaño de página inicial
-  showFirstLastButtons: boolean = true;
+  pageSize: number = 10;
+  showFirstLastButtons: boolean = false;
   totalItems: number = 0;
   page: number = 1;
   displayedColumns: string[] = ["firstName", "lastName", "username", "email", "phone", "rol", "acciones"];
 
   dataSource: MatTableDataSource<User> = new MatTableDataSource();
+  showInactiveUsers: boolean = false;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   router: any;
   user: any;
+  showInactiveUsersControl: any;
 
   constructor(
     private userService: UserService,
     private _snackBar: MatSnackBar,
     public dialog: MatDialog,
-    private route: Router) { }
+    private route: Router) {
+      this.showInactiveUsersControl = new FormControl(false);
+     }
 
   ngOnInit(): void {
-    this.cargarDatosDePagina(this.page, this.pageSize)
-
+    this.showInactiveUsersControl.valueChanges.subscribe((value: boolean) => {
+      this.showInactiveUsers = value;
+      this.cargarDatosDePagina(this.page, this.pageSize);
+    });
+    this.cargarDatosDePagina(this.page, this.pageSize);
   }
+
   ngAfterViewInit() {
     if (this.paginator) {
       this.paginator.page.subscribe((event) => {
@@ -53,15 +62,26 @@ export class UsuariosComponent implements OnInit {
       });
     }
   }
-  async cargarDatosDePagina(pageIndex: any = 1, pageSize: any = 20) {
+  async userRestore(userId: any) {
+    try {
+      await this.userService.restoreUser(userId);
+      this.cargarDatosDePagina(this.page, this.pageSize);
+    } catch (error) {
+      console.error('Error al restaurar el usuario:', error);
+    }
+  }
+
+  async cargarDatosDePagina(pageIndex: any = 1, pageSize: any = 10) {
     this.listUsuarios = [];
     const token = localStorage.getItem('token');
     if (token !== null) {
       try {
-        this.userService.getUsersPaginator(pageIndex, pageSize).subscribe((data) => {
+        this.userService.getUsersPaginator(pageIndex, pageSize, this.showInactiveUsers).subscribe((data) => {
 
           this.listUsuarios = data;
           this.totalItems = this.listUsuarios.length;
+          console.log(this.listUsuarios);
+          
           if (this.paginator) {
             this.paginator.length = this.totalItems;
           }
@@ -177,7 +197,7 @@ export class UsuariosComponent implements OnInit {
 
   async cargarTodosLosUsuarios() {
     try {
-      this.userService.getUsersPaginator(this.page, this.pageSize).subscribe((data) => {
+      this.userService.getUsersPaginator(this.page, this.pageSize, this.showInactiveUsers).subscribe((data) => {
         this.listUsuarios = data;
         this.totalItems = this.listUsuarios.length;
         if (this.paginator) {
@@ -194,4 +214,5 @@ export class UsuariosComponent implements OnInit {
       });
     }
   }
+  
 }

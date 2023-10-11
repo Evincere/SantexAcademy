@@ -115,9 +115,31 @@ export class UserService {
     }
   }
 
-  getUsersPaginator(page: number, pageSize: number): Observable<any> {
-    return this.http.get(`${this.appUrl}user?page=${page}&pageSize=${pageSize}`);
+  getUsersPaginator(page: number, pageSize: number, showInactiveUsers: boolean): Observable<any> {
+    return this.http.get(`${this.appUrl}user?page=${page}&pageSize=${pageSize}&showInactiveUsers=${showInactiveUsers}`);
   }
+
+  async restoreUser(id: any): Promise<void> {
+    console.log({id});
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        throw new Error('No se encontró un token en el localStorage.');
+      }
+  
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      });
+  
+      const restoreUserObservable = this.http.put<void>(`${this.appUrl}user/restore/${id}`, null, { headers });
+  
+      return await firstValueFrom(restoreUserObservable);
+    } catch (error) {
+      console.error('Error al restaurar el usuario:', error);
+      throw new Error('Error al restaurar el usuario.');
+    }
+  }
+  
 }
 
 

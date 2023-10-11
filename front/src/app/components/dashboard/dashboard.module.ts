@@ -34,6 +34,7 @@ import { DeleteConfirmComponent } from './usuarios/delete-confirm/delete-confirm
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ChartsComponent } from './charts/charts/charts.component';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -73,7 +74,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatCardModule,
     NgxPaginationModule,
     MatPaginatorModule,
-    MatIconModule 
+    MatIconModule,
+    MatCheckboxModule,
   ]
 })
 export class DashboardModule { }
