@@ -33,7 +33,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { ChartsComponent } from './charts/charts/charts.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-
+import { SurveyViewComponent } from './encuesta/survey-view/survey-view.component';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     PieOficinaRatingChartComponent,
     BarGroupChartComponent,
     DeleteConfirmComponent,
-    ChartsComponent
+    ChartsComponent,
+    SurveyViewComponent
   ],
   imports: [
     CommonModule,
@@ -72,6 +74,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatPaginatorModule,
     MatIconModule,
     MatCheckboxModule,
+    MatCardModule,
+    MatTabsModule
   ]
 })
 export class DashboardModule { }

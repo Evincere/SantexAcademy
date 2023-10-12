@@ -16,22 +16,22 @@ export class NavbarComponent implements OnInit {
     {
       nombre: 'Dashboard',
       redirect: '/dashboard',
-      roles: ['admin', 'encuestador', 'usuario']
+      roles: ['admin', 'Admin', 'encuestador']
     },
     {
       nombre: 'Usuarios',
       redirect: '/dashboard/usuarios',
-      roles: ['admin']
+      roles: ['admin', 'Admin']
     },
     {
       nombre: 'Encuesta',
       redirect: '/dashboard/encuesta',
-      roles: ['admin', 'encuestador']
+      roles: ['admin', 'Admin', 'encuestador']
     },
     {
       nombre: 'Listado de Encuestas',
-      redirect: '/dashboard/survey-list',
-      roles: ['admin', 'encuestador']
+      redirect: '/dashboard/survey-view',
+      roles: ['admin', 'Admin', 'encuestador']
     },
   ];
 
@@ -57,11 +57,5 @@ export class NavbarComponent implements OnInit {
       }
     });
   }
-
-  // cargarMenu(){
-  //   this._menuService.getMenu().subscribe(data => {
-  //     this.menu= data; 
-  //   })
-  // }
   
 }

@@ -5,9 +5,7 @@ import { firstValueFrom } from 'rxjs';
 import jwt_decode from 'jwt-decode';
 
 import { User } from '../interfaces/user';
-import { surveyList } from '../interfaces/survey-list'
-import { Survey } from '../interfaces/Survey';
-
+import { SurveyList } from '../interfaces/SurveyList'
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +20,7 @@ export class SurveyService {
 
 
   //Traigo Datos del Usuario actual para evaluar si puede ver todas las encuestas
-  
+
   async getIdUserSession(): Promise<number | null> {
     const token = localStorage.getItem('token');
     if (token) {
@@ -50,24 +48,33 @@ export class SurveyService {
     return await firstValueFrom(usersObservable);
   }
 
-
- //jz Traer Datos de los Encuestadores que realizaron cada Encuesta para el listado
-
-
- //Traigo lista de Encuestas
-  async getSurveys(token: string): Promise<surveyList[]> {
+  async getSurveys(token: string): Promise<SurveyList[]> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
     try {
-      const surveysObservable = this.http.get<surveyList[]>(`${this.appUrl}api/surveys`, { headers });
+      const surveysObservable = this.http.get<SurveyList[]>(`${this.appUrl}api/surveys`, { headers });
       return await firstValueFrom(surveysObservable);
     } catch (error) {
       console.error(error);
       throw error;
     }
   }
-  
+
+  async getSurveysBySurveyor(idSurveyor: any): Promise<SurveyList[]> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    try {
+      const surveysObservable = this.http.get<SurveyList[]>(`${this.appUrl}api/surveys/surveyor/${idSurveyor}`, { headers });
+      return await firstValueFrom(surveysObservable);
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
+
 }
 
 

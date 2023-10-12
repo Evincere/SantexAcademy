@@ -11,6 +11,7 @@ import { RoleGuard } from 'src/app/guards/role.guard';
 import { ChangePasswordComponent } from './usuarios/change-password/change-password.component';
 import { VistaChartComponent } from './charts/vista-chart/vista-chart.component';
 import { ChartsComponent } from './charts/charts/charts.component';
+import { SurveyViewComponent } from './encuesta/survey-view/survey-view.component';
 
 const routes: Routes = [
   {
@@ -25,7 +26,8 @@ const routes: Routes = [
     { path: 'edit-user/:id', component: CrearUsuarioComponent, canActivate: [RoleGuard], data: { rol: 'admin' } },
     { path: 'change-password', component: ChangePasswordComponent },
     { path: 'estadisticas', component: VistaChartComponent},
-    { path: 'charts', component: ChartsComponent}
+    { path: 'charts', component: ChartsComponent},
+    { path: 'survey-view', component: SurveyViewComponent}
   ]}
 ];
 
