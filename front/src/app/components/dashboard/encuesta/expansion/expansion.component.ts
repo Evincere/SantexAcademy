@@ -5,7 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { Survey } from 'src/app/interfaces/Survey';
+import { SurveyList } from 'src/app/interfaces/SurveyList';
 import { UserService } from 'src/app/services/usuario.service'
 import { Observable, firstValueFrom, map, startWith } from 'rxjs';
 @Component({
@@ -250,10 +250,13 @@ export class ExpansionComponent implements OnInit {
         return; // Salir del método si no se pudo obtener el ID del usuario
       }
 
-      const survey: Survey = {
+      const survey: SurveyList = {
         email: formData.pregunta2,
         questions: {},
         surveyorId: idUser,
+        nombre: '',
+        apellido: '',
+        createdAt: new Date()
       };
 
       // Agregar las respuestas de las preguntas al objeto survey

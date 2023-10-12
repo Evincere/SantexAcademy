@@ -1,3 +1,5 @@
+import { SurveyList } from "./SurveyList";
+
 export interface UserLogin{
     username: string;
     password: string;
@@ -13,6 +15,7 @@ export interface User {
     phone: number;
     rol: string;
     token:string;
+    surveys: SurveyList[];
     createdAt: Date;
     updatedAt: Date;
 }

@@ -21,8 +21,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { SurveyListComponent } from './survey-list/survey-list.component'; //jz
-import { VerEncuestaComponent } from './encuesta/ver-encuesta/ver-encuesta.component';
 import { VistaChartComponent } from './charts/vista-chart/vista-chart.component';
 import { PieChartComponent } from './charts/pie-chart/pie-chart.component'; //jz
 import { PieOtherChartComponent } from './charts/pie-chart/pie-hospedaje-chart.component';
@@ -35,7 +33,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { ChartsComponent } from './charts/charts/charts.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-
+import { SurveyViewComponent } from './encuesta/survey-view/survey-view.component';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -50,8 +49,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     LogoutConfirmationComponent,
     BarChartComponent,
     ChangePasswordComponent,
-    SurveyListComponent, 
-    VerEncuestaComponent,
     VistaChartComponent, 
     PieChartComponent, 
     PieOtherChartComponent,
@@ -59,7 +56,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     PieOficinaRatingChartComponent,
     BarGroupChartComponent,
     DeleteConfirmComponent,
-    ChartsComponent
+    ChartsComponent,
+    SurveyViewComponent
   ],
   imports: [
     CommonModule,
@@ -76,6 +74,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatPaginatorModule,
     MatIconModule,
     MatCheckboxModule,
+    MatCardModule,
+    MatTabsModule
   ]
 })
 export class DashboardModule { }

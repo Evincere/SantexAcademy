@@ -79,5 +79,9 @@ export class AuthService {
     return this.http.put(url, body);
   }
 
+  getToken() {
+    return localStorage.getItem('token');
+  }
+
 
 }

@@ -20,7 +20,7 @@ export class UsuariosComponent implements OnInit {
 
   listUsuarios: User[] = [];
   pageSizeOptions: number[] = [5, 10, 20];
-  pageSize: number = 10;
+  pageSize: number = 20;
   showFirstLastButtons: boolean = false;
   totalItems: number = 0;
   page: number = 1;
@@ -71,7 +71,7 @@ export class UsuariosComponent implements OnInit {
     }
   }
 
-  async cargarDatosDePagina(pageIndex: any = 1, pageSize: any = 10) {
+  async cargarDatosDePagina(pageIndex: any = 1, pageSize: any = 20) {
     this.listUsuarios = [];
     const token = localStorage.getItem('token');
     if (token !== null) {

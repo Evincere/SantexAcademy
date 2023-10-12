@@ -9,6 +9,7 @@ import jwt_decode from 'jwt-decode';
   providedIn: 'root'
 })
 export class UserService {
+  
   private appUrl = environment.APP_URL;
 
   constructor(private http: HttpClient) { }
@@ -140,6 +141,19 @@ export class UserService {
     }
   }
   
+  async getOnlySurveyors(): Promise<User[]> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    try {
+      const usersObservable = this.http.get<User[]>(`${this.appUrl}user/surveyors/actives`, { headers });
+      return await firstValueFrom(usersObservable);
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
 }
 
 
