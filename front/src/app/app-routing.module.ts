@@ -4,8 +4,6 @@ import { VerUsuarioComponent } from './components/dashboard/usuarios/ver-usuario
 import { LoginComponent } from './components/login/login.component';
 import { CrearUsuarioComponent } from './components/dashboard/usuarios/crear-usuario/crear-usuario.component';
 import { UsuariosComponent } from './components/dashboard/usuarios/usuarios.component';
-import { SurveyListComponent } from './components/dashboard/survey-list/survey-list.component'; //jz
-import { VerEncuestaComponent } from './components/dashboard/encuesta/ver-encuesta/ver-encuesta.component'; //jz
 import { AuthGuard } from './guards/auth.guard';
 import { RoleGuard } from './guards/role.guard';
 

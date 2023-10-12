@@ -21,8 +21,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { SurveyListComponent } from './survey-list/survey-list.component'; //jz
-import { VerEncuestaComponent } from './encuesta/ver-encuesta/ver-encuesta.component';
 import { VistaChartComponent } from './charts/vista-chart/vista-chart.component';
 import { PieChartComponent } from './charts/pie-chart/pie-chart.component'; //jz
 import { PieOtherChartComponent } from './charts/pie-chart/pie-hospedaje-chart.component';
@@ -50,8 +48,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     LogoutConfirmationComponent,
     BarChartComponent,
     ChangePasswordComponent,
-    SurveyListComponent, 
-    VerEncuestaComponent,
     VistaChartComponent, 
     PieChartComponent, 
     PieOtherChartComponent,
