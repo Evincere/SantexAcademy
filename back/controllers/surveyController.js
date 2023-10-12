@@ -131,6 +131,21 @@ async function getSurveysBySurveyorAndDates(req, res) {
   }
 }
 
+async function getSurveysBySurveyor(req, res) {
+  const surveyorId = Number.parseInt(req.params.surveyorId, 10);
+  console.log(surveyorId);
+  try {
+    const surveys = await surveyService.getSurveysBySurveyor(surveyorId);
+    if (surveys) {
+      res.status(200).json(surveys);
+    } else {
+      res.status(404).json({ message: 'No hay encuestas para el encuestador indicado' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: 'Existe un problema con el id del encuestador.' });
+  }
+}
+
 module.exports = {
   createSurvey,
   getSurveysByEmail,
@@ -140,4 +155,5 @@ module.exports = {
   updateSurvey,
   restoreSurvey,
   getSurveysBySurveyorAndDates,
+  getSurveysBySurveyor,
 };

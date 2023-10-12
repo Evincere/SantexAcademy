@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const { Op } = require('sequelize');
+const { Sequelize } = require('sequelize');
 const { User } = require('../models');
 
 async function getUserByUsername(userName) {
@@ -108,10 +109,21 @@ async function findUsersNotActivePaginated(offset, pageSize) {
       offset,
       limit: pageSize,
     });
-    console.log({ users });
     return users;
   } catch (error) {
     throw new Error('Error al traer usuarios no activos paginados');
+  }
+}
+
+async function findAllActiveSurveyors() {
+  try {
+    const users = await User.findAll({
+      where: Sequelize.where(Sequelize.fn('lower', Sequelize.col('rol')), Sequelize.fn('lower', 'encuestador')),
+    });
+
+    return users;
+  } catch (error) {
+    throw new Error(`Error al traer encuestadores: ${error.message}`);
   }
 }
 
@@ -125,4 +137,5 @@ module.exports = {
   deleteUser,
   restoreUser,
   findUsersNotActivePaginated,
+  findAllActiveSurveyors,
 };

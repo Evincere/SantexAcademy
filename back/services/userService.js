@@ -41,6 +41,11 @@ const findNotActiveUsers = async (offset, pageSize) => {
   return users;
 };
 
+const findAllActiveSurveyors = async () => {
+  const users = await userProvider.findAllActiveSurveyors();
+  return users;
+};
+
 module.exports = {
   authenticateUser,
   registerUser,
@@ -50,4 +55,5 @@ module.exports = {
   deleteUser,
   restoreUser,
   findNotActiveUsers,
+  findAllActiveSurveyors,
 };

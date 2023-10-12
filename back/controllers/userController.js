@@ -116,7 +116,9 @@ async function restoreUser(req, res, next) {
       return res.status(404).json({ message: 'Usuario no encontrado' });
     }
 
-    return res.status(200).json({ message: 'Usuario restaurado con éxito', user: restoredUser });
+    return res
+      .status(200)
+      .json({ message: 'Usuario restaurado con éxito', user: restoredUser });
   } catch (error) {
     next(error);
   }
@@ -144,6 +146,16 @@ async function changePassword(req, res) {
   }
 }
 
+async function getOnlySurveyors(req, res) {
+  console.log('tratando de traer solo encuestadores');
+  try {
+    const users = await userService.findAllActiveSurveyors();
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(500).json({ message: 'Error al traer usuarios paginados' });
+  }
+}
+
 module.exports = {
   login,
   createUser,
@@ -153,4 +165,5 @@ module.exports = {
   deleteUser,
   restoreUser,
   changePassword,
+  getOnlySurveyors,
 };

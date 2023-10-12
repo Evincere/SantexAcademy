@@ -113,6 +113,16 @@ async function getSurveysBySurveyorAndDates(surveyorId, startDate, endDate) {
   return surveys;
 }
 
+async function getSurveysBySurveyor(surveyorId) {
+  const surveys = await Survey.findAll({
+    where: {
+      surveyorId,
+    },
+  });
+
+  return surveys;
+}
+
 module.exports = {
   createSurvey,
   getSurveysByEmail,
@@ -122,4 +132,5 @@ module.exports = {
   updateSurvey,
   restoreSurvey,
   getSurveysBySurveyorAndDates,
+  getSurveysBySurveyor,
 };

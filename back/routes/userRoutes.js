@@ -48,5 +48,7 @@ router.delete(
   userController.deleteUser,
 );
 
+router.get('/surveyors/actives', userController.getOnlySurveyors);
+
 router.put('/:id/change-password', userController.changePassword);
 module.exports = router;
