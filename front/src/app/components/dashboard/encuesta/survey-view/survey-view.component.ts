@@ -14,17 +14,40 @@ import { SurveyDetailsComponent } from './survey-details/survey-details.componen
 export class SurveyViewComponent implements OnInit {
 
   users: User[] = [];
-  surveyList: SurveyList[] = [];
+  surveyList: SurveyList[] = [];// Aquí guardas la lista completa de encuestas
+  paginatedSurveyList: any[] = []; // Aquí guardas las encuestas para la página actual
+  totalItems: number = 0; // Total de encuestas
+  itemsPerPage: number = 10; // Cantidad de encuestas por página
+  pageSizeOptions: number[] = [5, 10, 20]; // Opciones de tamaño de página
+  currentPage: number = 0; // Página actual
 
   constructor(
     private userService: UserService, 
     private surveyService: SurveyService, 
-    private dialog: MatDialog) { }
+    private dialog: MatDialog) {
+       
+      this.totalItems = this.surveyList.length; // Establece la longitud total
+      this.updatePageData(); // Actualiza la lista de encuestas para la página actual
+      
+     }
 
   ngOnInit(): void {
     this.cargarUsers();
     this.cargarSurveys();
+    this.updatePageData();
   }
+
+  onPageChange(event: any): void {
+    this.currentPage = event.pageIndex;
+    this.itemsPerPage = event.pageSize;
+    this.updatePageData();
+  }
+
+  updatePageData(): void {
+    const startIndex = this.currentPage * this.itemsPerPage;
+    this.paginatedSurveyList = this.surveyList.slice(startIndex, startIndex + this.itemsPerPage);
+  }
+
 
   cargarSurveys() {
     const token = localStorage.getItem('token');
@@ -32,6 +55,7 @@ export class SurveyViewComponent implements OnInit {
       this.surveyService.getSurveys(token)
         .then((surveys)=>{
           this.surveyList = surveys;
+          this.updatePageData();
         })
         .catch(()=>{
 

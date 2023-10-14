@@ -16,7 +16,7 @@
   <mat-tab label="Todas las encuestas">
     <div class="container mt-4">
       <div class="row">
-        <div class="col-4" *ngFor="let survey of surveyList">
+        <div class="col-4" *ngFor="let survey of paginatedSurveyList">
           <div class="survey-card mat-elevation-z4">
             <div class="survey-info">
               <div class="item-label">Email:</div>
@@ -34,5 +34,6 @@
         </div>
       </div>
     </div>
+    <mat-paginator [length]="totalItems" [pageSize]="itemsPerPage" [pageSizeOptions]="pageSizeOptions" (page)="onPageChange($event)"></mat-paginator>
   </mat-tab>
 </mat-tab-group>
