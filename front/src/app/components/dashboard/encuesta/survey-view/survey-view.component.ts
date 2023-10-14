@@ -90,13 +90,15 @@ export class SurveyViewComponent implements OnInit {
     });
   }
   
-  async openSurveyDetails(user:User) {
-    // Abre la ventana modal con los detalles de las encuestas del usuario
+  async openSurveyDetails(surveys:SurveyList[] | SurveyList) {
+  if(!Array.isArray(surveys)) {
+    surveys = [surveys];
+  } 
+  
   const dialogRef = this.dialog.open(SurveyDetailsComponent, {
-    data: user.surveys, 
+    data: surveys, 
     width: '600px', 
   });
-  
   // Maneja cualquier acción después de que se cierre la ventana modal
   dialogRef.afterClosed().subscribe((result) => {
     

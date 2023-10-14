@@ -3,7 +3,7 @@
     <div class="container mt-4">
       <div class="row">
         <div class="col-4" *ngFor="let user of users">
-          <div class="user-card mat-elevation-z4" (click)="openSurveyDetails(user)">
+          <div class="user-card mat-elevation-z4" (click)="openSurveyDetails(user.surveys)">
             <div class="user-info">
               <div class="user-name">{{ user.firstName }}</div>
               <div class="user-surveys">{{ user.surveys.length }} Encuestas</div>
@@ -20,7 +20,7 @@
         <input class="filter-container" matInput placeholder="email ..." [(ngModel)]="filterText" (ngModelChange)="applyFilter()" /></mat-form-field>
       <div class="row">
         <div class="col-4" *ngFor="let survey of paginatedSurveyList">
-          <div class="survey-card mat-elevation-z4">
+          <div class="survey-card mat-elevation-z4" (click)="openSurveyDetails(survey)">
             <div class="survey-info">
               <div class="item-label">Email:</div>
               <div class="item-value">{{ survey.email }}</div>

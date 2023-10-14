@@ -19,7 +19,7 @@ export class SurveyDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.survey);
+   
   }
 
 }
