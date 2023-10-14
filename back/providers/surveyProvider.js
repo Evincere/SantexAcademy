@@ -115,11 +115,8 @@ async function getSurveysBySurveyorAndDates(surveyorId, startDate, endDate) {
 
 async function getSurveysBySurveyor(surveyorId) {
   const surveys = await Survey.findAll({
-    where: {
-      surveyorId,
-    },
+    where: { surveyorId },
   });
-
   return surveys;
 }
 

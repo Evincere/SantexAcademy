@@ -11,7 +11,7 @@ module.exports = (sequelize) => {
       },
       questions: {
         type: DataTypes.JSON,
-        allowNull: false,
+        allowNull: true,
       },
       surveyorId: {
         type: DataTypes.INTEGER,

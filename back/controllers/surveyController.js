@@ -133,7 +133,6 @@ async function getSurveysBySurveyorAndDates(req, res) {
 
 async function getSurveysBySurveyor(req, res) {
   const surveyorId = Number.parseInt(req.params.surveyorId, 10);
-  console.log(surveyorId);
   try {
     const surveys = await surveyService.getSurveysBySurveyor(surveyorId);
     if (surveys) {

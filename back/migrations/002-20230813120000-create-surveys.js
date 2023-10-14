@@ -13,7 +13,8 @@ module.exports = {
       },
       questions: {
         type: Sequelize.JSON,
-        allowNull: false,
+        allowNull: true,
+        defaultValue: null,
       },
       surveyorId: {
         type: Sequelize.INTEGER,

@@ -82,10 +82,13 @@ export class SurveyViewComponent implements OnInit {
       const id = user.id;
       this.surveyService.getSurveysBySurveyor(id)
         .then((surveys) => {
+          console.log({surveys});
+          
           user.surveys = surveys;
         })
         .catch(() => {
-
+          console.log('');
+          
         });
     });
   }

@@ -147,7 +147,6 @@ async function changePassword(req, res) {
 }
 
 async function getOnlySurveyors(req, res) {
-  console.log('tratando de traer solo encuestadores');
   try {
     const users = await userService.findAllActiveSurveyors();
     res.status(200).json(users);
