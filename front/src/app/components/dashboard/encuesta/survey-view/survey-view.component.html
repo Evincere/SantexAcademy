@@ -14,7 +14,10 @@
     </div>
   </mat-tab>
   <mat-tab label="Todas las encuestas">
+    
     <div class="container mt-4">
+      <mat-form-field appearance="standard"><mat-label>Filter</mat-label>
+        <input class="filter-container" matInput placeholder="email ..." [(ngModel)]="filterText" (ngModelChange)="applyFilter()" /></mat-form-field>
       <div class="row">
         <div class="col-4" *ngFor="let survey of paginatedSurveyList">
           <div class="survey-card mat-elevation-z4">
@@ -24,7 +27,7 @@
             </div>
             <div class="survey-info">
               <div class="item-label">Fecha de Creación:</div>
-              <div class="item-value">{{ survey.createdAt }}</div>
+              <div class="item-value">{{ survey.createdAt | date }}</div>
             </div>
             <div class="survey-info">
               <div class="item-label">ID del Encuestador:</div>

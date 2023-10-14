@@ -80,8 +80,6 @@ export class UsuariosComponent implements OnInit {
 
           this.listUsuarios = data;
           this.totalItems = this.listUsuarios.length;
-          console.log(this.listUsuarios);
-          
           if (this.paginator) {
             this.paginator.length = this.totalItems;
           }
@@ -111,10 +109,7 @@ export class UsuariosComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
     if (!filterValue) {
       this.cargarDatosDePagina();
-
       this.dataSource.data = this.listUsuarios;
-      console.log(this.dataSource.data);
-
     }
   }
 

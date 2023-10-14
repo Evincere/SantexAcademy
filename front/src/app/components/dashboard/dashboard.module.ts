@@ -37,6 +37,7 @@ import { SurveyViewComponent } from './encuesta/survey-view/survey-view.componen
 import {MatTabsModule} from '@angular/material/tabs';
 import { SurveyDetailsComponent } from './encuesta/survey-view/survey-details/survey-details.component';
 import {MatDividerModule} from '@angular/material/divider';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -80,6 +81,8 @@ import {MatDividerModule} from '@angular/material/divider';
     MatTabsModule,
     MatDialogModule,
     MatDividerModule,
+    FormsModule,
+    MatInputModule
   ]
 })
 export class DashboardModule { }

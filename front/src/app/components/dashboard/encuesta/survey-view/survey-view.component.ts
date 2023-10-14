@@ -5,7 +5,6 @@ import { SurveyList } from '../../../../interfaces/SurveyList';
 import { SurveyService } from 'src/app/services/survey.service';
 import { MatDialog } from '@angular/material/dialog';
 import { SurveyDetailsComponent } from './survey-details/survey-details.component';
-
 @Component({
   selector: 'app-survey-view',
   templateUrl: './survey-view.component.html',
@@ -20,6 +19,7 @@ export class SurveyViewComponent implements OnInit {
   itemsPerPage: number = 10; // Cantidad de encuestas por página
   pageSizeOptions: number[] = [5, 10, 20]; // Opciones de tamaño de página
   currentPage: number = 0; // Página actual
+  filterText: any;
 
   constructor(
     private userService: UserService, 
@@ -99,7 +99,18 @@ export class SurveyViewComponent implements OnInit {
   
   // Maneja cualquier acción después de que se cierre la ventana modal
   dialogRef.afterClosed().subscribe((result) => {
-    // Puedes realizar acciones específicas si es necesario
+    
   });
   }
+
+  applyFilter(): void {
+    const filterValue = this.filterText.toLowerCase(); 
+        
+    this.paginatedSurveyList = this.surveyList.filter((survey) => {
+      return survey.email.toLowerCase().includes(filterValue);
+    });
+    this.totalItems = this.paginatedSurveyList.length;
+    this.currentPage = 0;
+  }
+  
 }
