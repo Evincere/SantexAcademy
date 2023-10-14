@@ -35,7 +35,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { SurveyViewComponent } from './encuesta/survey-view/survey-view.component';
 import {MatTabsModule} from '@angular/material/tabs';
-
+import { SurveyDetailsComponent } from './encuesta/survey-view/survey-details/survey-details.component';
+import {MatDividerModule} from '@angular/material/divider';
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -57,7 +58,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     BarGroupChartComponent,
     DeleteConfirmComponent,
     ChartsComponent,
-    SurveyViewComponent
+    SurveyViewComponent,
+    SurveyDetailsComponent
   ],
   imports: [
     CommonModule,
@@ -75,7 +77,9 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatIconModule,
     MatCheckboxModule,
     MatCardModule,
-    MatTabsModule
+    MatTabsModule,
+    MatDialogModule,
+    MatDividerModule,
   ]
 })
 export class DashboardModule { }

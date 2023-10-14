@@ -1,0 +1,22 @@
+<div class="survey-details" style="max-height: 400px; overflow-y: auto;">
+  <h2>Detalles de la Encuesta</h2>
+  <mat-divider></mat-divider>
+  <mat-accordion>
+    <ng-container *ngFor="let surveyItem of survey">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <strong>Encuesta fecha {{ surveyItem.createdAt | date }} </strong>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="survey-details-content">
+          <p><strong>Nombre:</strong> {{ surveyItem.questions['pregunta1'] }}</p>
+          <p><strong>Apellido:</strong> {{ surveyItem.questions['pregunta2'] }}</p>
+          <p><strong>Email:</strong> {{ surveyItem.email }}</p>
+          <!-- todo: aquí otros campos de la encuesta -->
+        </div>
+      </mat-expansion-panel>
+    </ng-container>
+  </mat-accordion>
+</div>
+<button mat-raised-button (click)="closeDialog()">Cerrar</button>
