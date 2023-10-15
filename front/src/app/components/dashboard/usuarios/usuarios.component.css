@@ -44,3 +44,39 @@ table {
   display: flex;
   align-items: center; 
 }
+
+/* Estilo para el contenedor principal */
+.container {
+  padding: 20px;
+  text-align: left;
+}
+
+/* Estilo para la barra de filtros */
+.filter-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+}
+
+/* Estilo para el campo de filtro */
+.filter-field {
+  flex: 1;
+  margin-right: 10px;
+}
+
+/* Estilo para el checkbox de mostrar usuarios inactivos */
+.show-inactive-checkbox {
+  font-size: 16px;
+  color: #007bff; /* Color azul */
+}
+
+/* Estilo para la tabla de usuarios */
+.user-table {
+  width: 100%;
+}
+
+
