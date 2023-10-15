@@ -51,7 +51,7 @@
             </mat-form-field> 
         
             <mat-form-field appearance="fill">
-              <mat-label>Con quién vino?</mat-label>
+              <mat-label>¿Con quién vino?</mat-label>
               <input matInput autocomplete="off" formControlName="pregunta8">
             </mat-form-field>  
          
@@ -67,13 +67,13 @@
 
           <mat-expansion-panel-header>
             <mat-panel-title class="title" >
-              POR QUE ELIGIÓ MINA CLAVERO?
+              ¿POR QUE ELIGIÓ MINA CLAVERO?
             </mat-panel-title>        
           </mat-expansion-panel-header>
 
           <!--Pregunta 9-->
         <section class="example-section" [formGroup]="pregunta9">
-          <h2>A través de qué medio conoció Mina Clavero?</h2>
+          <h2>A través de qué medio conoció Mina Clavero</h2>
             <p><mat-checkbox formControlName="television">Televisión</mat-checkbox></p>
             <p><mat-checkbox formControlName="pagina">Pagina web</mat-checkbox></p>
             <p><mat-checkbox formControlName="radio">Radio</mat-checkbox></p>
@@ -83,7 +83,7 @@
           
             <mat-form-field appearance="legacy">
               <mat-label>Otro? Cuál?</mat-label>
-              <input matInput  placeholder="" autocomplete="off" formControlName="otro"> 
+              <input matInput autocomplete="off" formControlName="otro"> 
               <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
             </mat-form-field>
         </section>
@@ -91,13 +91,13 @@
           <!--Pregunta 10-->
         <section class="example-section" [formGroup]="pregunta10">
           <h2>Por qué eligió Mina Clavero para pasar sus vacaciones?</h2> 
-            <p><mat-checkbox formControlName="conocer">Por que ya conocía y le gustó el lugar?</mat-checkbox></p>
-            <p><mat-checkbox formControlName="recomendacion">Por que se lo recomendaron?</mat-checkbox></p>
-            <p><mat-checkbox formControlName="promocion">Por que vió alguna promoción en los medios?</mat-checkbox></p>
-            <p><mat-checkbox formControlName="tranquilidad">Por que es un lugar tranquilo para la familia?</mat-checkbox></p>
-            <p><mat-checkbox formControlName="paisajes">Por sus paisajes?</mat-checkbox></p>
-            <p><mat-checkbox formControlName="eventos">Por sus eventos?</mat-checkbox></p> 
-            <p><mat-checkbox formControlName="amabilidad">Por la amabilidad de los vecinos?</mat-checkbox></p> 
+            <p><mat-checkbox formControlName="conocer">Ya conocía y me gustó el lugar</mat-checkbox></p>
+            <p><mat-checkbox formControlName="recomendacion">Me lo recomendaron</mat-checkbox></p>
+            <p><mat-checkbox formControlName="promocion">Vi una promoción en medios</mat-checkbox></p>
+            <p><mat-checkbox formControlName="tranquilidad">Porque es un lugar tranquilo para la familia</mat-checkbox></p>
+            <p><mat-checkbox formControlName="paisajes">Por sus paisajes</mat-checkbox></p>
+            <p><mat-checkbox formControlName="eventos">Por sus eventos</mat-checkbox></p> 
+            <p><mat-checkbox formControlName="amabilidad">Por la amabilidad de los vecinos</mat-checkbox></p> 
           
             <mat-form-field appearance="legacy">
               <mat-label>Otro? Cuál?</mat-label>
@@ -125,7 +125,7 @@
         <section class="example-section" [formGroup]="pregunta11">
           <h2>¿Usted llegó a Mina Clavero?</h2>
           <mat-radio-group formControlName="reservacion">
-            <mat-radio-button  style="margin-right: 20px"  value="reserva">Con Reserva</mat-radio-button>
+            <mat-radio-button  style="margin-right: 20px" value="reserva">Con Reserva</mat-radio-button>
 
             <mat-form-field appearance="legacy">
               <mat-label>A través de que medio?</mat-label>
@@ -157,7 +157,7 @@
           <section class="example-section" [formGroup]="pregunta13">
             <h2>¿Cómo es el servicio en el Hospedaje que ha contratado?</h2>
               <mat-radio-group formControlName="satisfaccion">
-                <mat-radio-button  style="margin-right: 20px"  value="excelente">Excelente</mat-radio-button>
+                <mat-radio-button  style="margin-right: 20px" value="excelente">Excelente</mat-radio-button>
                 <mat-radio-button style="margin-right: 20px" value="muyBuena">Muy Buena</mat-radio-button>
                 <mat-radio-button style="margin-right: 20px" value="buena">Buena</mat-radio-button>
                 <mat-radio-button style="margin-right: 20px" value="regular">Regular</mat-radio-button>
@@ -202,7 +202,7 @@
           <section class="example-section" [formGroup]="pregunta15">
             <h2>¿Ud. pidió información en las oficinas de Turismo de Mina Clavero?</h2>
             <mat-radio-group formControlName="informes">
-              <mat-radio-button  style="margin-right: 20px"  value="si">Sí</mat-radio-button>
+              <mat-radio-button  style="margin-right: 20px" value="si">Sí</mat-radio-button>
               <mat-radio-button style="margin-left: 40px" value="no">No</mat-radio-button>
             </mat-radio-group>      
           </section>

@@ -255,7 +255,6 @@ export class ExpansionComponent implements OnInit {
         questions: {},
         surveyorId: idUser,
         nombre: '',
-        apellido: '',
         createdAt: new Date()
       };
 

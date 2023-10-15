@@ -82,8 +82,6 @@ export class SurveyViewComponent implements OnInit {
       const id = user.id;
       this.surveyService.getSurveysBySurveyor(id)
         .then((surveys) => {
-          console.log({surveys});
-          
           user.surveys = surveys;
         })
         .catch(() => {
@@ -112,7 +110,8 @@ export class SurveyViewComponent implements OnInit {
     const filterValue = this.filterText.toLowerCase(); 
         
     this.paginatedSurveyList = this.surveyList.filter((survey) => {
-      return survey.email.toLowerCase().includes(filterValue);
+      const email = new String(survey.questions['pregunta2']);
+      return email.toLowerCase().includes(filterValue);
     });
     this.totalItems = this.paginatedSurveyList.length;
     this.currentPage = 0;

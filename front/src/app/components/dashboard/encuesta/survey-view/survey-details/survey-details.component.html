@@ -15,10 +15,74 @@
               <strong>Nombre:</strong> {{ surveyItem.questions["pregunta1"] }}
             </p>
             <p>
-              <strong>Apellido:</strong> {{ surveyItem.questions["pregunta2"] }}
+              <strong>Email</strong> {{ surveyItem.questions["pregunta2"] }}
             </p>
-            <p><strong>Email:</strong> {{ surveyItem.email }}</p>
-            <!-- todo: aquí otros campos de la encuesta -->
+            <p>
+              <strong>Edad:</strong> {{ surveyItem.questions["pregunta3"] }}
+            </p>
+            <p>
+              <strong>Sexo:</strong> {{ surveyItem.questions["pregunta4"]==='m'?'Masculino':'Femenino' }}
+            </p>
+            <p>
+              <strong>Localidad:</strong> {{ surveyItem.questions["pregunta5"] }}
+            </p>
+            <p>
+              <strong>Provincia:</strong> {{ surveyItem.questions["pregunta6"] }}
+            </p>
+            <p>
+              <strong>País:</strong> {{ surveyItem.questions["pregunta7"] }}
+            </p>
+            <p>
+              <strong>¿Con quién vino?:</strong> {{ surveyItem.questions["pregunta8"] }}
+            </p>
+            <p>
+              <strong>¿Cómo conoció Mina Clavero?:</strong> {{ getPregunta9Value(surveyItem.questions['pregunta9']) }}
+            </p>
+            <p>
+              <strong>¿Por qué eligió Mina Clavero?:</strong> {{ getPregunta10Value(surveyItem.questions["pregunta10"]) }}
+            </p>
+            <p>
+              <strong>¿Hizo reserva?:</strong> {{ getPregunta11Value(surveyItem.questions["pregunta11"]) }}
+            </p>
+            <p>
+              <strong>Tipo de hospedaje:</strong> {{ getPregunta12Value(surveyItem.questions["pregunta12"]) }}
+            </p>
+            <p>
+              <strong>Evalución del servicio de hospedaje:</strong> {{ getPregunta13Value(surveyItem.questions["pregunta13"]) }}
+            </p>
+            <p>
+              <strong>¿Recibió material informativo de la secretaría de turismo en el hospedaje donde se alojó?:</strong> {{ getPregunta14Value(surveyItem.questions["pregunta14"]) }}
+            </p>
+            <p>
+              <strong>¿Pidió información en las oficinas de Turismo?:</strong> {{ getPregunta15Value(surveyItem.questions["pregunta15"]) }}
+            </p>
+            <p>
+              <strong>¿En qué oficina lo hizo?:</strong> {{ getPregunta16Value(surveyItem.questions["pregunta16"]) }}
+            </p>
+            <p>
+              <strong>¿Qué tipo de información solicitó en las oficinas de turismo?:</strong> {{ getPregunta17Value(surveyItem.questions["pregunta17"]) }}
+            </p>
+            <p>
+              <strong>¿A través de que medio solicitó información?:</strong> {{ getPregunta18Value(surveyItem.questions["pregunta18"]) }}
+            </p>
+            <p>
+              <strong>¿Qué tipo de material se le entregó en las oficinas de turismo?:</strong> {{ getPregunta19Value(surveyItem.questions["pregunta19"]) }}
+            </p>
+            <p>
+              <strong>¿Cómo evalúa el tipo de información brindada?:</strong> {{ getPregunta20Value(surveyItem.questions["pregunta20"]) }}
+            </p>
+            <p>
+              <strong>¿Se le brindó algún otro tipo de información de su interés?:</strong> {{ getPregunta21Value(surveyItem.questions["pregunta21"]) }}
+            </p>
+            <p>
+              <strong>¿Qué información se le brindó?:</strong> {{ getPregunta22Value(surveyItem.questions["pregunta22"]) }}
+            </p>
+            <p>
+              <strong>¿Considera a Mina Clavero como un destino completo?:</strong> {{ getPregunta23Value(surveyItem.questions["pregunta23"]) }}
+            </p>
+            <p>
+              <strong>¿Recomendaría Mina Clavero como destino turístico?:</strong> {{ getPregunta24Value(surveyItem.questions["pregunta24"]) }}
+            </p>
           </div>
         </mat-expansion-panel>
       </ng-container>
