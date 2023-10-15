@@ -19,7 +19,7 @@ const routes: Routes = [
     component: DashboardComponent, 
     canActivate: [AuthGuard], // protege todo el modulo 
     children:[
-    { path:"", component: InicioComponent },
+    { path: "", component: InicioComponent },
     { path: 'usuarios', component: UsuariosComponent, canActivate: [RoleGuard], data: { rol: 'admin' } },
     { path: 'encuesta', component: EncuestaComponent, canActivate: [RoleGuard], data: { rol: ['admin', 'encuestador', 'Admin'] } },
     { path: 'crear-usuario', component: CrearUsuarioComponent, canActivate: [RoleGuard], data: { rol: 'admin' } },
@@ -27,7 +27,7 @@ const routes: Routes = [
     { path: 'change-password', component: ChangePasswordComponent },
     { path: 'estadisticas', component: VistaChartComponent},
     { path: 'charts', component: ChartsComponent},
-    { path: 'survey-view', component: SurveyViewComponent}
+    { path: 'survey-view', canActivate: [RoleGuard], data: { rol: 'admin' }, component: SurveyViewComponent}
   ]}
 ];
 

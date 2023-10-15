@@ -31,7 +31,12 @@ export class NavbarComponent implements OnInit {
     {
       nombre: 'Listado de Encuestas',
       redirect: '/dashboard/survey-view',
-      roles: ['admin', 'Admin', 'encuestador']
+      roles: ['admin', 'Admin']
+    },
+    {
+      nombre: 'Mis encuestas',
+      redirect: '/dashboard/survey-view',
+      roles: ['encuestador']
     },
   ];
 
