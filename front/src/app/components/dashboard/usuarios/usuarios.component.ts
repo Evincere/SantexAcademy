@@ -8,9 +8,9 @@ import { UserService } from 'src/app/services/usuario.service';
 import { VerUsuarioComponent } from './ver-usuario/ver-usuario.component';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteConfirmComponent } from './delete-confirm/delete-confirm.component';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
-
+import { MatDividerModule } from '@angular/material/divider';
 @Component({
   selector: 'app-usuarios',
   templateUrl: './usuarios.component.html',
@@ -40,8 +40,8 @@ export class UsuariosComponent implements OnInit {
     private _snackBar: MatSnackBar,
     public dialog: MatDialog,
     private route: Router) {
-      this.showInactiveUsersControl = new FormControl(false);
-     }
+    this.showInactiveUsersControl = new FormControl(false);
+  }
 
   ngOnInit(): void {
     this.showInactiveUsersControl.valueChanges.subscribe((value: boolean) => {
@@ -76,14 +76,28 @@ export class UsuariosComponent implements OnInit {
     const token = localStorage.getItem('token');
     if (token !== null) {
       try {
-        this.userService.getUsersPaginator(pageIndex, pageSize, this.showInactiveUsers).subscribe((data) => {
-
-          this.listUsuarios = data;
-          this.totalItems = this.listUsuarios.length;
-          if (this.paginator) {
-            this.paginator.length = this.totalItems;
+        this.userService.getUsersPaginator(pageIndex, pageSize, this.showInactiveUsers).subscribe(async (data) => {
+          if (this.showInactiveUsers && data.length === 0) {
+            // Si no hay usuarios inactivos y se solicitaron, muestra un mensaje informativo.
+            this._snackBar.open('No hay usuarios inactivos.', '', {
+              duration: 2000,
+              horizontalPosition: 'center',
+              verticalPosition: 'bottom'
+            });
+            this.showInactiveUsersControl.setValue(false); // Desactiva el filtro de usuarios inactivos
+            this.cargarTodosLosUsuarios();
+            if (this.paginator) {
+              this.paginator.length = this.totalItems;
+            }
+            this.dataSource.data = this.listUsuarios;
+          } else {
+            this.listUsuarios = data;
+            this.totalItems = this.listUsuarios.length;
+            if (this.paginator) {
+              this.paginator.length = this.totalItems;
+            }
+            this.dataSource.data = data;
           }
-          this.dataSource.data = data;
         });
       } catch (error) {
         console.error('Error al cargar usuarios:', error);
@@ -209,5 +223,5 @@ export class UsuariosComponent implements OnInit {
       });
     }
   }
-  
+
 }

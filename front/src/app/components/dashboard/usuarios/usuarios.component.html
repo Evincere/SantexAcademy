@@ -19,13 +19,18 @@
           placeholder="Ex. ium"
           #input
           autocomplete="off"
-        />
-        <button mat-button (click)="clearInput(input)" matSuffix mat-icon-button aria-label="Clear">
-          <mat-icon>clear</mat-icon>
-        </button>
+          /><mat-icon mat-button (click)="clearInput(input)" matSuffix mat-icon-button aria-label="Clear">clear</mat-icon>
       </div>
     </mat-form-field>
-    <mat-checkbox [formControl]="showInactiveUsersControl" (change)="cargarDatosDePagina(page, pageSize)">Mostrar usuarios inactivos</mat-checkbox>
+    <div class="d-flex justify-content-center">
+      <mat-checkbox
+        [formControl]="showInactiveUsersControl"
+        (change)="cargarDatosDePagina(page, pageSize)"
+      >
+        Mostrar usuarios inactivos
+      </mat-checkbox>
+    </div>
+   
 
     <div class="mat-elevation-z3">
       <!-- tabla -->
