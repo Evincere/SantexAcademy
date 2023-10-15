@@ -22,14 +22,14 @@ export class SurveyViewComponent implements OnInit {
   filterText: any;
 
   constructor(
-    private userService: UserService, 
-    private surveyService: SurveyService, 
+    private userService: UserService,
+    private surveyService: SurveyService,
     private dialog: MatDialog) {
-       
-      this.totalItems = this.surveyList.length; // Establece la longitud total
-      this.updatePageData(); // Actualiza la lista de encuestas para la página actual
-      
-     }
+
+    this.totalItems = this.surveyList.length; // Establece la longitud total
+    this.updatePageData(); // Actualiza la lista de encuestas para la página actual
+
+  }
 
   ngOnInit(): void {
     this.cargarUsers();
@@ -51,13 +51,13 @@ export class SurveyViewComponent implements OnInit {
 
   cargarSurveys() {
     const token = localStorage.getItem('token');
-    if(token) {
+    if (token) {
       this.surveyService.getSurveys(token)
-        .then((surveys)=>{
+        .then((surveys) => {
           this.surveyList = surveys;
           this.updatePageData();
         })
-        .catch(()=>{
+        .catch(() => {
 
         });
     }
@@ -86,35 +86,36 @@ export class SurveyViewComponent implements OnInit {
         })
         .catch(() => {
           console.log('');
-          
+
         });
     });
   }
-  
-  async openSurveyDetails(surveys:SurveyList[] | SurveyList) {
-  if(!Array.isArray(surveys)) {
-    surveys = [surveys];
-  } 
-  
-  const dialogRef = this.dialog.open(SurveyDetailsComponent, {
-    data: surveys, 
-    width: '600px', 
-  });
-  // Maneja cualquier acción después de que se cierre la ventana modal
-  dialogRef.afterClosed().subscribe((result) => {
-    
-  });
+
+  async openSurveyDetails(surveys: SurveyList[] | SurveyList) {
+    if (!Array.isArray(surveys)) {
+      surveys = [surveys];
+    }
+
+    const dialogRef = this.dialog.open(SurveyDetailsComponent, {
+      data: surveys,
+      width: '600px',
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+
+    });
   }
 
-  applyFilter(): void {
-    const filterValue = this.filterText.toLowerCase(); 
-        
-    this.paginatedSurveyList = this.surveyList.filter((survey) => {
-      const email = new String(survey.questions['pregunta2']);
-      return email.toLowerCase().includes(filterValue);
-    });
+  applyFilter(event: Event): void {
+    const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
+    this.paginatedSurveyList = this.filterData(filterValue);
     this.totalItems = this.paginatedSurveyList.length;
     this.currentPage = 0;
   }
-  
+
+  filterData(filterValue: string): any[] {
+    return this.surveyList.filter(survey => {
+      const email = survey.email as string;
+      return email.toLowerCase().includes(filterValue);
+    });
+  }
 }

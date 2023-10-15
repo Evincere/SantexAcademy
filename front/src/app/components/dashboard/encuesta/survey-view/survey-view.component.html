@@ -18,7 +18,7 @@
     
     <div class="container mt-4">
       <mat-form-field appearance="standard"><mat-label>Filter</mat-label>
-        <input class="filter-container" matInput placeholder="email ..." [(ngModel)]="filterText" (ngModelChange)="applyFilter()" /></mat-form-field>
+        <input class="filter-container" matInput placeholder="email ..." [(ngModel)]="filterText" (keyup)="applyFilter($event)" /></mat-form-field>
       <div class="row">
         <div class="col-4" *ngFor="let survey of paginatedSurveyList">
           <div class="survey-card mat-elevation-z4" (click)="openSurveyDetails(survey)">

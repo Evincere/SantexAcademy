@@ -3,7 +3,7 @@ export interface SurveyList {
   nombre: string;
   email: string;
   questions: {
-    [index: string]: string | boolean | number | null;
+    [index: string]: string | number | boolean | null;
   };
   surveyorId: number | null;
   createdAt: Date; // jz
