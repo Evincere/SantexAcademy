@@ -54,3 +54,11 @@
 .item-value {
   color: #333;
 }
+
+.user-avatar {
+  width: 100px; 
+  height: 100px; 
+  border-radius: 50%; 
+  object-fit: cover; /* Escala la imagen para llenar completamente el contenedor */
+  border: 2px solid #007bff;
+}

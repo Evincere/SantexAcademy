@@ -3,10 +3,11 @@
     <div class="container mt-4">
       <div class="row">
         <div class="col-4" *ngFor="let user of users">
-          <div class="user-card mat-elevation-z4" (click)="openSurveyDetails(user.surveys)">
-            <div class="user-info">
-              <div class="user-name">{{ user.firstName }}</div>
-              <div class="user-surveys">{{ user.surveys.length }} Encuestas</div>
+          <div class="user-card mat-elevation-z4" (click)="openSurveyDetails(user.surveys)" [matBadge]="user.surveys.length" matBadgePosition="before" matBadgeColor="accent">
+            <div class="user-info" >
+              <img class="user-avatar" src="https://source.unsplash.com/200x200/?persona+{{user.id}}" alt="User Avatar">
+              <div class="user-name" >{{ user.firstName }}</div>
+              <div class="user-surveys" >{{ user.surveys.length }} Encuestas</div>
             </div>
           </div>
         </div>
