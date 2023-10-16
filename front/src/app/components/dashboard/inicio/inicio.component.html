@@ -1,70 +1,131 @@
-
-
 <div class="container-inicio container-fluid-md">
+  <div class="mat-card-container">
+    <!--Cards-->
+    <mat-card [class.visible]="mostrarCard">
+      <mat-grid-list cols="4" rowHeight="70px">
+        <!--Encuesta-->
+        <mat-grid-tile
+          id="sel"
+          colspan="3"
+          [rowspan]="2"
+          [style.background]="'lightblue'"
+          [routerLink]="['encuesta']"
+        >
+          <div class="contenedor-icono">
+            <img
+              class="imagen-icono"
+              src="../../../../assets/img/iconos/votacion.png"
+              alt="Imagen de encuesta"
+            />
+            <p class="texto-icono">Encuesta</p>
+          </div>
+        </mat-grid-tile>
 
-<div class="mat-card-container">
-<!--Cards-->
-<mat-card  [class.visible]="mostrarCard">
-  <mat-grid-list cols="4" rowHeight="70px">
+        <!--Usuarios-->
+        <mat-grid-tile
+          id="sel"
+          colspan="1"
+          [rowspan]="4"
+          [style.background]="'lightblue'"
+          *ngIf="!esEncuestador; else misEncuestasLink"
+        >
+          <div class="contenedor-icono">
+            <span [routerLink]="['usuarios']">
+              <img
+                class="imagen-icono"
+                src="../../../../assets/img/anadir-usuario.png"
+                alt="Imagen de usuarios"
+              />
+              <p class="texto-icono">Usuarios</p>
+            </span>
+          </div>
+        </mat-grid-tile>
 
-    <!--Encuesta-->
-    <mat-grid-tile id="sel" colspan="3" [rowspan]="2" [style.background]="'lightblue'" [routerLink]="['encuesta']">
-      <div class="contenedor-icono">
-        <img class="imagen-icono" src="../../../../assets/img/iconos/votacion.png" alt="Imagen de encuesta">
-        <p class="texto-icono">Encuesta</p>
-      </div>
-    </mat-grid-tile>
+        <ng-template #misEncuestasLink>
+          <mat-grid-tile
+            id="sel"
+            colspan="1"
+            [rowspan]="4"
+            [style.background]="'lightblue'"
+            [routerLink]="['mis-encuestas']"
+          >
+            <div class="contenedor-icono">
+              <img
+                class="imagen-icono"
+                src="../../../../assets/img/mis-encuestas.png"
+                alt="Imagen de encuestas"
+              />
+              <p class="texto-icono">Mis Encuestas</p>
+            </div>
+          </mat-grid-tile>
+        </ng-template>
 
-     <!--Usuarios-->
-    <mat-grid-tile id="sel" colspan="1" [rowspan]="4" [style.background]="'lightblue'" *ngIf="!esEncuestador; else misEncuestasLink">
-      <div class="contenedor-icono">
-        <img class="imagen-icono" src="../../../../assets/img/anadir-usuario.png" alt="Imagen de usuarios">
-        <p class="texto-icono">Usuarios</p>
-      </div>
-    </mat-grid-tile>
-    
-    <ng-template #misEncuestasLink>
-      <mat-grid-tile id="sel" colspan="1" [rowspan]="4" [style.background]="'lightblue'" [routerLink]="['mis-encuestas']">
-        <div class="contenedor-icono">
-          <img class="imagen-icono" src="../../../../assets/img/mis-encuestas.png" alt="Imagen de encuestas">
-          <p class="texto-icono">Mis Encuestas</p>
-        </div>
-      </mat-grid-tile>
-    </ng-template>
+        <!--Muni/turismo-->
+        <mat-grid-tile
+          id="sel"
+          colspan="1"
+          [rowspan]="2"
+          [style.background]="'lightblue'"
+        >
+          <div class="contenedor-icono">
+            <a
+              href="http://www.minaclavero.gov.ar/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style="text-decoration: none"
+            >
+              <img
+                class="imagen-icono"
+                src="../../../../assets/img/iconos/folleto.png"
+                alt="Imagen de información"
+              />
+              <p class="texto-icono">Info</p>
+            </a>
+          </div>
+        </mat-grid-tile>
 
-     <!--Muni/turismo-->
-    <mat-grid-tile id="sel"  colspan="1" [rowspan]="2" [style.background]="'lightblue'">
-      <div class="contenedor-icono">
-      <a href="http://www.minaclavero.gov.ar/" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
-      
-      <img class="imagen-icono" src="../../../../assets/img/iconos/folleto.png" alt="Imagen de información">
-      <p class="texto-icono">Info</p>
-      </a> 
-    </div>
-    </mat-grid-tile>
-    
-     <!--Mapa Turistico-->
-    <mat-grid-tile id="sel" colspan="2" [rowspan]="2" [style.background]="'lightblue'">
-      <div class="contenedor-icono">
-      <a href="http://www.minaclavero.gov.ar/recomendaciones.html" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
-        <img class="imagen-icono" src="../../../../assets/img/iconos/pin-de-ubicacion.png" alt="imagen de ubicación">
-       <p class="texto-icono">Mapa Turístico</p> 
-      </a> 
-    </div>
-    </mat-grid-tile>
+        <!--Mapa Turistico-->
+        <mat-grid-tile
+          id="sel"
+          colspan="2"
+          [rowspan]="2"
+          [style.background]="'lightblue'"
+        >
+          <div class="contenedor-icono">
+            <a
+              href="http://www.minaclavero.gov.ar/recomendaciones.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              style="text-decoration: none"
+            >
+              <img
+                class="imagen-icono"
+                src="../../../../assets/img/iconos/pin-de-ubicacion.png"
+                alt="imagen de ubicación"
+              />
+              <p class="texto-icono">Mapa Turístico</p>
+            </a>
+          </div>
+        </mat-grid-tile>
 
-    <!--Graficos-->
-    <mat-grid-tile  id="sel" colspan="4" [rowspan]="2" [style.background]="'lightblue'" [routerLink]="['charts']" >
-      <div class="contenedor-icono">
-        <img class="imagen-icono" src="../../../../assets/img/iconos/estadisticas.png" alt="Imagen de encuesta">
-        <p class="texto-icono">Estadísticas</p>
-      </div>
-    </mat-grid-tile>
-
-  </mat-grid-list>
-</mat-card>
-
+        <!--Graficos-->
+        <mat-grid-tile
+          id="sel"
+          colspan="4"
+          [rowspan]="2"
+          [style.background]="'lightblue'"
+          [routerLink]="['charts']"
+        >
+          <div class="contenedor-icono">
+            <img
+              class="imagen-icono"
+              src="../../../../assets/img/iconos/estadisticas.png"
+              alt="Imagen de encuesta"
+            />
+            <p class="texto-icono">Estadísticas</p>
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-card>
+  </div>
 </div>
-
-</div>
-
