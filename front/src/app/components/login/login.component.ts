@@ -57,4 +57,9 @@ export class LoginComponent implements OnInit {
       verticalPosition: 'bottom'
     });
   }
+
+  togglePasswordVisibility(event: Event) {
+    event.preventDefault();
+    this.hide = !this.hide;
+  }
 }
