@@ -13,7 +13,8 @@ import { UserLogin } from '../../interfaces/user';
 export class LoginComponent implements OnInit {
   form: FormGroup;
   loading = false;
-
+  hide = true;
+  
   constructor(
     private fb: FormBuilder,
     private _snackBar: MatSnackBar,
