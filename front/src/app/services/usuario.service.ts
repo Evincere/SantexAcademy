@@ -10,12 +10,12 @@ import jwt_decode from 'jwt-decode';
 })
 export class UserService {
   
+  
   private appUrl = environment.APP_URL;
 
   constructor(private http: HttpClient) { }
 
   async changePassword(value: any): Promise<boolean> {
-    // Verificar que 'value' sea un objeto y tiene las propiedades necesarias
     if (value && value.currentPassword && value.newPassword) {
       const userId = await this.getIdUserSession(); 
       const url = `/user/${userId}/change-password`;
@@ -90,10 +90,7 @@ export class UserService {
     if (token) {
       // Decodificar el token JWT
       const decodedToken: any = jwt_decode(token);
-
-      // Obtener el ID del usuario del payload decodificado
-      const userId = decodedToken.userId;
-      return userId;
+      return decodedToken.userId;
     } else {
       console.log('No se encontró un token en el localStorage.');
       return null;
@@ -154,6 +151,7 @@ export class UserService {
       throw error;
     }
   }
+
 }
 
 

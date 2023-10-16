@@ -12,6 +12,7 @@ import { ChangePasswordComponent } from './usuarios/change-password/change-passw
 import { VistaChartComponent } from './charts/vista-chart/vista-chart.component';
 import { ChartsComponent } from './charts/charts/charts.component';
 import { SurveyViewComponent } from './encuesta/survey-view/survey-view.component';
+import { MisEncuestasComponent } from './encuesta/mis-encuestas/mis-encuestas.component';
 
 const routes: Routes = [
   {
@@ -27,7 +28,8 @@ const routes: Routes = [
     { path: 'change-password', component: ChangePasswordComponent },
     { path: 'estadisticas', component: VistaChartComponent},
     { path: 'charts', component: ChartsComponent},
-    { path: 'survey-view', canActivate: [RoleGuard], data: { rol: 'admin' }, component: SurveyViewComponent}
+    { path: 'survey-view', canActivate: [RoleGuard], data: { rol: ['admin', 'Admin'] }, component: SurveyViewComponent},
+    { path: 'mis-encuestas', canActivate: [RoleGuard], data: { rol: 'encuestador' }, component: MisEncuestasComponent}
   ]}
 ];
 

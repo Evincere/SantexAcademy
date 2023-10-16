@@ -39,6 +39,7 @@ import { SurveyDetailsComponent } from './encuesta/survey-view/survey-details/su
 import {MatDividerModule} from '@angular/material/divider';
 import { FormsModule } from '@angular/forms';
 import {MatBadgeModule} from '@angular/material/badge';
+import { MisEncuestasComponent } from './encuesta/mis-encuestas/mis-encuestas.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import {MatBadgeModule} from '@angular/material/badge';
     DeleteConfirmComponent,
     ChartsComponent,
     SurveyViewComponent,
-    SurveyDetailsComponent
+    SurveyDetailsComponent,
+    MisEncuestasComponent
   ],
   imports: [
     CommonModule,

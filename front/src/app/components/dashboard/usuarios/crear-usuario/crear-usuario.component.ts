@@ -53,7 +53,6 @@ export class CrearUsuarioComponent implements OnInit {
           firstName: user.firstName,
           lastName: user.lastName,
           username: user.username,
-          password: user.password,
           email: user.email,
           rol: user.rol,
           phone: user.phone
