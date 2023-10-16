@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
+import { SurveyList } from 'src/app/interfaces/SurveyList';
 import { SurveyService } from 'src/app/services/survey.service';
 import { UserService } from 'src/app/services/usuario.service';
+import { SurveyDetailsComponent } from '../survey-view/survey-details/survey-details.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-mis-encuestas',
@@ -22,7 +25,8 @@ export class MisEncuestasComponent implements OnInit {
   constructor(
     private router: Router,
     private userService: UserService,
-    private surveyService: SurveyService) { }
+    private surveyService: SurveyService,
+    private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.userService.getIdUserSession()
@@ -49,8 +53,17 @@ export class MisEncuestasComponent implements OnInit {
     return this.encuestas.slice(startIndex, endIndex);
   }
 
-  openSurveyDetails(survey: any) {
-    this.router.navigate(['/encuesta-detalle', survey.id]);
+  openSurveyDetails(survey: SurveyList[] | SurveyList) {
+    if (!Array.isArray(survey)) {
+      survey = [survey];
+    }
+    const dialogRef = this.dialog.open(SurveyDetailsComponent, {
+      data: survey,
+      width: '600px',
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+
+    });
   }
 
   applyFilter(event: any) {

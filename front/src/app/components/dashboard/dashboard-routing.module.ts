@@ -29,7 +29,8 @@ const routes: Routes = [
     { path: 'estadisticas', component: VistaChartComponent},
     { path: 'charts', component: ChartsComponent},
     { path: 'survey-view', canActivate: [RoleGuard], data: { rol: ['admin', 'Admin'] }, component: SurveyViewComponent},
-    { path: 'mis-encuestas', canActivate: [RoleGuard], data: { rol: 'encuestador' }, component: MisEncuestasComponent}
+    { path: 'mis-encuestas', canActivate: [RoleGuard], data: { rol: 'encuestador' }, component: MisEncuestasComponent},
+    { path: 'encuesta-detalle', canActivate: [RoleGuard], data: { rol: 'encuestador' }, component: SurveyViewComponent},
   ]}
 ];
 
