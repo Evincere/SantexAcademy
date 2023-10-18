@@ -368,7 +368,7 @@
             <h2>
               ¿Ud. pidió información en las oficinas de Turismo de Mina Clavero?
             </h2>
-            <mat-radio-group formControlName="informes" (change)="onInformesChange()">
+            <mat-radio-group formControlName="informes" (change)="onInformesChange($event)">
               <mat-radio-button style="margin-right: 20px" value="si"
                 >Sí</mat-radio-button
               >
@@ -550,12 +550,12 @@
           <br />
 
           <!--Pregunta 21-->
-          <section *ngIf="oficinaAsistio" class="example-section" [formGroup]="pregunta21">
+          <section *ngIf="oficinaAsistio" class="example-section" [formGroup]="pregunta21" >
             <h2>
               ¿Aparte de la información solicitada, se le brindó algún otro tipo
               de información de su interés?
             </h2>
-            <mat-radio-group formControlName="otraInfo">
+            <mat-radio-group formControlName="otraInfo" (change)="onOtraInfoChange($event)">
               <mat-radio-button style="margin-right: 20px" value="si"
                 >Sí</mat-radio-button
               >
@@ -567,7 +567,7 @@
           <br />
 
           <!--Pregunta 22-->
-          <section *ngIf="oficinaAsistio" class="example-section" [formGroup]="pregunta22">
+          <section *ngIf="(oficinaAsistio && otraInfo)" class="example-section" [formGroup]="pregunta22">
             <h2>¿Qué información se le brindó?</h2>
             <mat-checkbox
               style="margin-right: 20px"

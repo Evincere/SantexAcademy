@@ -9,6 +9,7 @@ import { SurveyList } from 'src/app/interfaces/SurveyList';
 import { UserService } from 'src/app/services/usuario.service'
 import { Observable, firstValueFrom, map, startWith } from 'rxjs';
 import { MatTabChangeEvent } from '@angular/material/tabs';
+import { MatRadioChange } from '@angular/material/radio';
 @Component({
   selector: 'app-expansion',
   templateUrl: './expansion.component.html',
@@ -16,6 +17,7 @@ import { MatTabChangeEvent } from '@angular/material/tabs';
 })
 export class ExpansionComponent implements OnInit {
   oficinaAsistio = true;
+  otraInfo = true;
   setcheckbox = true;
   accordion: any;
   pasoUno: FormGroup;
@@ -337,8 +339,20 @@ export class ExpansionComponent implements OnInit {
     expandedQuestion.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
-  onInformesChange() {
-    this.oficinaAsistio = !this.oficinaAsistio;
+  onInformesChange(event: MatRadioChange) {
+    if(event.value === 'no') {
+      this.oficinaAsistio = false;
+    } else if (event.value === 'si') {
+      this.oficinaAsistio = true;
+    }
+    
+  }
+  onOtraInfoChange(event: MatRadioChange) {
+    if(event.value === 'no') {
+      this.otraInfo = false;
+    } else if (event.value === 'si') {
+      this.otraInfo = true;
+    }
   }
 
 }
