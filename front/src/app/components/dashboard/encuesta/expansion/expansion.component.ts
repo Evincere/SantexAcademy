@@ -338,14 +338,7 @@ export class ExpansionComponent implements OnInit {
   }
 
   onInformesChange() {
-    // this.oficinaAsistio = !this.oficinaAsistio;
-    const pregunta15Control = this.pasoUno.get('pregunta15');
-    if (pregunta15Control) {
-      const informesValue = pregunta15Control.value;
-      this.oficinaAsistio = informesValue === 'si';
-    } else {
-      return
-    }
+    this.oficinaAsistio = !this.oficinaAsistio;
   }
 
 }

@@ -25,10 +25,8 @@ export class SurveyViewComponent implements OnInit {
     private userService: UserService,
     private surveyService: SurveyService,
     private dialog: MatDialog) {
-
-    this.totalItems = this.surveyList.length; // Establece la longitud total
-    this.updatePageData(); // Actualiza la lista de encuestas para la página actual
-
+      this.totalItems = 0;
+      this.updatePageData();
   }
 
   ngOnInit(): void {
@@ -49,17 +47,17 @@ export class SurveyViewComponent implements OnInit {
   }
 
 
-  cargarSurveys() {
+  async cargarSurveys() {
     const token = localStorage.getItem('token');
     if (token) {
-      this.surveyService.getSurveys(token)
-        .then((surveys) => {
-          this.surveyList = surveys;
-          this.updatePageData();
-        })
-        .catch(() => {
-
-        });
+      try {
+        const surveys = await this.surveyService.getSurveys(token);
+        this.surveyList = surveys;
+        this.totalItems = this.surveyList.length; // Actualiza totalItems
+        this.updatePageData(); // Actualiza la lista de encuestas para la página actual
+      } catch (error) {
+        console.error(error);
+      }
     }
   }
 
@@ -78,17 +76,21 @@ export class SurveyViewComponent implements OnInit {
   }
 
   async cargarEncuestasDeEncuestador() {
-    this.users.forEach((user) => {
+    for (const user of this.users) {
       const id = user.id;
-      this.surveyService.getSurveysBySurveyor(id)
-        .then((surveys) => {
+      try {
+        const surveys = await this.surveyService.getSurveysBySurveyor(id);
+        if (surveys.length > 0) {
           user.surveys = surveys;
-        })
-        .catch(() => {
-          console.log('');
-
-        });
-    });
+        }
+      } catch (error) {
+        console.log('Error al cargar encuestas para el usuario con ID:', id);
+        console.error(error);
+      }
+    }
+  
+    // Después de cargar las encuestas, puedes filtrar los usuarios que tienen encuestas.
+    this.users = this.users.filter((user) => user.surveys && user.surveys.length > 0);
   }
 
   async openSurveyDetails(surveys: SurveyList[] | SurveyList) {

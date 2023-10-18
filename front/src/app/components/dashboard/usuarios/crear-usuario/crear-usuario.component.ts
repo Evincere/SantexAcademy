@@ -29,7 +29,7 @@ export class CrearUsuarioComponent implements OnInit {
                   username: ['', Validators.required],
                   password: ['', Validators.required],
                   email: ['', [Validators.required, Validators.email]],
-                  rol: ['', Validators.required],
+                  rol: ['Encuestador', Validators.required],
                   phone: ['', Validators.required]
                 });
 
@@ -48,11 +48,11 @@ export class CrearUsuarioComponent implements OnInit {
   obtenerUsuario(id: number) {
     this.userService.getUserById(id)
       .then((user) => {
-        console.log(user);
         this.form.setValue({
           firstName: user.firstName,
           lastName: user.lastName,
           username: user.username,
+          password: user.password,
           email: user.email,
           rol: user.rol,
           phone: user.phone

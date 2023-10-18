@@ -28,7 +28,7 @@
                 </mat-form-field>
                 
                 <!--contraseña--> 
-                <mat-form-field class="campo">
+                <mat-form-field class="campo" *ngIf="operacion==='Agregar'">
                     <mat-label>Contraseña</mat-label>
                     <input matInput autocomplete="off" formControlName="password">
                 </mat-form-field>
@@ -40,13 +40,21 @@
                 </mat-form-field>
             
                 <!--rol-->    
-                <mat-form-field class="campo">
+                <mat-form-field class="campo" *ngIf="operacion==='Agregar'">
                     <mat-label>Rol</mat-label>
                     <mat-select formControlName="rol">
                          <mat-option *ngFor="let item of rol" [value]="item">
                             {{item}}
                         </mat-option>
                     </mat-select>
+                </mat-form-field>
+                <mat-form-field class="campo" *ngIf="operacion==='Editar'">
+                    <mat-label>Rol</mat-label>
+                    <mat-select formControlName="rol">
+                        <mat-option *ngFor="let item of rol" [value]="item">
+                           {{item}}
+                       </mat-option>
+                   </mat-select>
                 </mat-form-field>
             
     
