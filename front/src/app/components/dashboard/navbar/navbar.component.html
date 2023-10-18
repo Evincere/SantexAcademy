@@ -11,6 +11,7 @@
       [routerLinkActiveOptions]="{ exact: true }"
       class="example-button"
       *ngIf="authService.hasAnyRole(item.roles)"
+      class="example-button"
     >
       {{ item.nombre }}
     </button>

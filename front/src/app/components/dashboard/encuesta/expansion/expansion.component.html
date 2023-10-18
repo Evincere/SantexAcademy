@@ -4,8 +4,9 @@
       <mat-accordion class="example-headers-align">
         <!--Panel 1 DATOS PERSONALES-->
         <mat-expansion-panel
-          [expanded]="false"
+          [expanded]='false'
           (opened)="setStep(0)"
+          (opened)="onQuestionExpanded(expandedQuestion)"
           hideToggle
         >
           <mat-expansion-panel-header>
@@ -13,7 +14,7 @@
               >DATOS PERSONALES
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <mat-tab-group mat-align-tabs="start">
+          <mat-tab-group mat-align-tabs="start" (selectedTabChange)="focusInputOnTabChange($event)">
             <mat-tab label="Nombre"
               ><mat-form-field appearance="fill">
                 <mat-label>Nombre</mat-label>
@@ -21,6 +22,7 @@
                   matInput
                   autocomplete="off"
                   formControlName="pregunta1"
+                  tabindex="1"
                 /> </mat-form-field
             ></mat-tab>
             <mat-tab label="Email"
@@ -30,6 +32,7 @@
                   matInput
                   autocomplete="off"
                   formControlName="pregunta2"
+                  tabindex="2"
                 /> </mat-form-field
             ></mat-tab>
             <mat-tab label="Edad"
@@ -39,17 +42,20 @@
                   matInput
                   autocomplete="off"
                   formControlName="pregunta3"
+                  tabindex="3"
                 /> </mat-form-field
             ></mat-tab>
-            <mat-tab label="Género"
-              ><mat-form-field appearance="fill">
+            <mat-tab label="Género">
+              <mat-form-field appearance="fill">
                 <mat-label>Género</mat-label>
-                <input
-                  matInput
-                  autocomplete="off"
-                  formControlName="pregunta4"
-                /> </mat-form-field
-            ></mat-tab>
+                <mat-select formControlName="pregunta4" multiple tabindex="4">
+                  <mat-option value="masculino">Masculino</mat-option>
+                  <mat-option value="femenino">Femenino</mat-option>
+                  <mat-option value="no-binario">No binario</mat-option>
+                  <mat-option value="otro">Otro</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </mat-tab>
           </mat-tab-group>
           <mat-divider></mat-divider>
           <mat-panel-title class="title">
@@ -63,6 +69,7 @@
                   matInput
                   autocomplete="off"
                   formControlName="pregunta5"
+                  tabindex="5"
                 /> </mat-form-field
             ></mat-tab>
             <mat-tab label="Provincia"
@@ -72,6 +79,7 @@
                   matInput
                   autocomplete="off"
                   formControlName="pregunta6"
+                  tabindex="6"
                 /> </mat-form-field
             ></mat-tab>
             <mat-tab label="País"
@@ -81,6 +89,7 @@
                   matInput
                   autocomplete="off"
                   formControlName="pregunta7"
+                  tabindex="7"
                 /> </mat-form-field
             ></mat-tab>
             <mat-tab label="Acompañante/s"
@@ -90,12 +99,13 @@
                   matInput
                   autocomplete="off"
                   formControlName="pregunta8"
+                  tabindex="8"
                 /> </mat-form-field
             ></mat-tab>
           </mat-tab-group>
 
           <mat-action-row class="mx-auto">
-            <button mat-button color="primary" (click)="nextStep($event)">
+            <button mat-button color="primary" (click)="nextStep($event)" tabindex="9">
               Siguiente
             </button>
           </mat-action-row>
@@ -105,6 +115,7 @@
         <mat-expansion-panel
           [expanded]="step === 1"
           (opened)="setStep(1)"
+          (opened)="onQuestionExpanded(expandedQuestion)"
           hideToggle
         >
           <mat-expansion-panel-header>
@@ -211,6 +222,7 @@
         <mat-expansion-panel
           [expanded]="step === 2"
           (opened)="setStep(2)"
+          (opened)="onQuestionExpanded(expandedQuestion)"
           hideToggle
         >
           <mat-expansion-panel-header>
@@ -342,6 +354,7 @@
         <mat-expansion-panel
           [expanded]="step === 3"
           (opened)="setStep(3)"
+          (opened)="onQuestionExpanded(expandedQuestion)"
           hideToggle
         >
           <mat-expansion-panel-header>
@@ -355,7 +368,7 @@
             <h2>
               ¿Ud. pidió información en las oficinas de Turismo de Mina Clavero?
             </h2>
-            <mat-radio-group formControlName="informes">
+            <mat-radio-group formControlName="informes" (change)="onInformesChange()">
               <mat-radio-button style="margin-right: 20px" value="si"
                 >Sí</mat-radio-button
               >
@@ -367,7 +380,7 @@
           <br />
 
           <!--Pregunta 16-->
-          <section class="example-section" [formGroup]="pregunta16">
+          <section class="example-section" [formGroup]="pregunta16" *ngIf="oficinaAsistio">
             <h2>¿En qué oficina lo hizo?</h2>
             <mat-checkbox style="margin-right: 20px" formControlName="rotonda"
               >Oficina de la Rotonda de ingreso</mat-checkbox
@@ -382,7 +395,7 @@
           <br />
 
           <!--Pregunta 17-->
-          <section class="example-section" [formGroup]="pregunta17">
+          <section *ngIf="oficinaAsistio" class="example-section" [formGroup]="pregunta17">
             <h2>
               ¿Qué tipo de información solicitó en las oficinas de turismo?
             </h2>
@@ -423,7 +436,7 @@
           <br />
 
           <!--Pregunta 18-->
-          <section class="example-section" [formGroup]="pregunta18">
+          <section *ngIf="oficinaAsistio" class="example-section" [formGroup]="pregunta18">
             <h2>
               ¿A través de que medio solicitó información en las oficinas de
               turismo?
@@ -467,8 +480,10 @@
 
         <!--Panel 5 TIPO DE INFORMACIÓN-->
         <mat-expansion-panel
+          *ngIf="oficinaAsistio"
           [expanded]="step === 4"
           (opened)="setStep(4)"
+          (opened)="onQuestionExpanded(expandedQuestion)"
           hideToggle
         >
           <mat-expansion-panel-header>
@@ -478,7 +493,7 @@
           </mat-expansion-panel-header>
 
           <!--Pregunta 19-->
-          <section class="example-section" [formGroup]="pregunta19">
+          <section *ngIf="oficinaAsistio" class="example-section" [formGroup]="pregunta19">
             <h2>
               ¿Qué tipo de material se le entregó en las oficinas de turismo?
             </h2>
@@ -503,7 +518,7 @@
           <br />
 
           <!--Pregunta 20-->
-          <section class="example-section" [formGroup]="pregunta20">
+          <section *ngIf="oficinaAsistio" class="example-section" [formGroup]="pregunta20">
             <h2>
               ¿Cómo evalúa el tipo de información brindada por las oficinas de
               turismo de Mina Clavero?
@@ -535,7 +550,7 @@
           <br />
 
           <!--Pregunta 21-->
-          <section class="example-section" [formGroup]="pregunta21">
+          <section *ngIf="oficinaAsistio" class="example-section" [formGroup]="pregunta21">
             <h2>
               ¿Aparte de la información solicitada, se le brindó algún otro tipo
               de información de su interés?
@@ -552,7 +567,7 @@
           <br />
 
           <!--Pregunta 22-->
-          <section class="example-section" [formGroup]="pregunta22">
+          <section *ngIf="oficinaAsistio" class="example-section" [formGroup]="pregunta22">
             <h2>¿Qué información se le brindó?</h2>
             <mat-checkbox
               style="margin-right: 20px"
@@ -606,6 +621,7 @@
         <mat-expansion-panel
           [expanded]="step === 5"
           (opened)="setStep(5)"
+          (opened)="onQuestionExpanded(expandedQuestion)"
           hideToggle
         >
           <mat-expansion-panel-header>
