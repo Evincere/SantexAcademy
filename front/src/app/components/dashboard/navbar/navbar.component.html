@@ -1,32 +1,40 @@
+<mat-toolbar class="toolbar barra-fija">
+  <img src="./assets/img/logo.png" width="13%" />
 
-    <mat-toolbar class="toolbar barra-fija">
-      <img src="./assets/img/logo.png" width="13%">
-    
-      <span class="example-spacer"></span>
-    
-      <ng-container *ngFor="let item of menu">
-        <button mat-button [routerLink]="item.redirect" class="example-button"
-                *ngIf="authService.hasAnyRole(item.roles)">{{item.nombre}}</button>
-      </ng-container>
-    
-      <span class="example-spacer"></span>
-      <button mat-icon-button routerLink="change-password" 
-      matTooltip="password edit"
-      matTooltipPosition="left"
-      class="example-icon favorite-icon"
-      aria-label="Example icon-button with heart icon">
-      <mat-icon>settings</mat-icon>
-      </button>
-      <button mat-icon-button (click)="openLogoutConfirmationModal()" 
-      matTooltip="logout"
-      class="example-icon favorite-icon"
-              aria-label="Example icon-button with heart icon">
-              
-        <mat-icon>logout</mat-icon>
-      </button>
-    </mat-toolbar>
-    
-    
-    
-    
-    
+  <span class="example-spacer"></span>
+
+  <ng-container *ngFor="let item of menu">
+    <button
+      mat-button
+      [routerLink]="item.redirect"
+      [routerLinkActive]="'active'"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="example-button"
+      *ngIf="authService.hasAnyRole(item.roles)"
+    >
+      {{ item.nombre }}
+    </button>
+  </ng-container>
+
+  <span class="example-spacer"></span>
+  <button
+    mat-icon-button
+    routerLink="change-password"
+    matTooltip="password edit"
+    matTooltipPosition="left"
+    class="example-icon favorite-icon"
+    aria-label="Example icon-button with heart icon"
+  >
+    <mat-icon>settings</mat-icon>
+  </button>
+  <button
+    mat-icon-button
+    (click)="openLogoutConfirmationModal()"
+    matTooltip="logout"
+    class="example-icon favorite-icon"
+    aria-label="Example icon-button with heart icon"
+    [class.active]="router.url.includes('logout')"
+  >
+    <mat-icon>logout</mat-icon>
+  </button>
+</mat-toolbar>

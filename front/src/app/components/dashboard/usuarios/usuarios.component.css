@@ -4,7 +4,9 @@
    margin-right: 11px;
  }
 
-
+.container {
+  padding-top: 0;
+}
 table {
     width: 100%;
     margin-top: 10px;
@@ -59,7 +61,7 @@ table {
   padding: 10px;
   background-color: #f5f5f5;
   border: 1px solid #ddd;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 /* Estilo para el campo de filtro */

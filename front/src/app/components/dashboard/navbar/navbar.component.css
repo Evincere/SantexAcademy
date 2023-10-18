@@ -29,3 +29,7 @@
     /* Otros estilos según tus preferencias */
   }
   
+  .active {
+    background-color: #007bff; 
+    color: #fff; 
+  }

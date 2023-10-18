@@ -40,6 +40,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import { FormsModule } from '@angular/forms';
 import {MatBadgeModule} from '@angular/material/badge';
 import { MisEncuestasComponent } from './encuesta/mis-encuestas/mis-encuestas.component';
+import { MatRippleModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -81,13 +82,11 @@ import { MisEncuestasComponent } from './encuesta/mis-encuestas/mis-encuestas.co
     MatPaginatorModule,
     MatIconModule,
     MatCheckboxModule,
-    MatCardModule,
     MatTabsModule,
-    MatDialogModule,
     MatDividerModule,
     FormsModule,
-    MatInputModule,
     MatBadgeModule,
+    MatRippleModule
   ]
 })
 export class DashboardModule { }

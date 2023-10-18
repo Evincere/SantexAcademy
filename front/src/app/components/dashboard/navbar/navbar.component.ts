@@ -4,6 +4,7 @@ import { MenuService } from 'src/app/services/menu.service';
 import { MatDialog } from '@angular/material/dialog';
 import { LogoutConfirmationComponent } from './logout-confirmation/logout-confirmation.component';
 import { AuthService } from 'src/app/services/auth.service';
+import { RouterModule, Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -40,15 +41,14 @@ export class NavbarComponent implements OnInit {
     },
   ];
 
-
   constructor(
     private _menuService: MenuService, 
     private dialog: MatDialog, 
-    public authService: AuthService
+    public authService: AuthService,
+    public router: Router
     ) { }
 
   ngOnInit(): void {
-    // this.cargarMenu();
   }
 
   openLogoutConfirmationModal(): void {
