@@ -16,8 +16,8 @@
     </mat-grid-tile>
 
      <!--Usuarios-->
-    <mat-grid-tile id="sel" colspan="1" [rowspan]="4" [style.background]="'lightblue'" *ngIf="!esEncuestador; else misEncuestasLink">
-      <div class="contenedor-icono">
+    <mat-grid-tile id="sel" colspan="1" [rowspan]="4" [style.background]="'lightblue'" *ngIf="!esEncuestador; else misEncuestasLink" [routerLink]="['usuarios']">
+      <div class="contenedor-icono" >
         <img class="imagen-icono" src="../../../../assets/img/anadir-usuario.png" alt="Imagen de usuarios">
         <p class="texto-icono">Usuarios</p>
       </div>
